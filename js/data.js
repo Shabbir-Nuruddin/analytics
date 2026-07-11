@@ -10,7 +10,7 @@ const REPORT = {
     { label: "Videos live", value: "3", neutral: true },
     { label: "Total views (live)", value: "1,039" },
     { label: "Total likes", value: "28" },
-    { label: "New followers", value: "4" },
+    { label: "New followers", value: "5" },
     { label: "Leads captured", value: "1" },
     { label: "Calls booked", value: "0", neutral: true },
   ],
@@ -73,12 +73,12 @@ const REPORT = {
     {
       date: "Jul 10, 2026", resolved: false,
       title: "Nike's downfall (original edit) restricted",
-      body: "Video was made ineligible for the For You feed under TikTok's Integrity &amp; Authenticity policy. Likely cause: the AI-generated-content disclosure label was not switched on for this upload, required whenever a video uses a synthetic avatar or cloned voice of a real person.",
+      body: "Video was made ineligible for the For You feed under TikTok's Integrity &amp; Authenticity policy. Initial diagnosis pointed at the on-screen stock chart, showing a real company's share price falling alongside dramatic language can read as a financial claim.",
     },
     {
       date: "Jul 10, 2026", resolved: false,
       title: "Re-edit restricted again",
-      body: "Removed a stock-chart segment and reposted. Restricted a second time. Revised diagnosis: the video names a real, publicly traded company (Nike) and frames its performance as declining, a different and likely stronger trigger than the chart itself, since an earlier post used similar B-roll without issue.",
+      body: "Removed the stock-chart segment and reposted. Restricted a second time. Revised diagnosis: the video names a real, publicly traded company (Nike) and frames its performance as declining, and that pattern itself appears to be the trigger, since an earlier post used similar B-roll without issue.",
     },
     {
       date: "Jul 10, 2026", resolved: true,
@@ -95,7 +95,6 @@ const REPORT = {
     "Post daily, same window, 2am UAE / 6pm US Eastern",
     "Reply to every comment and DM within 2 hours",
     "Screen every new video for real names, companies, or financial figures before it goes up",
-    "Confirm the AI-disclosure toggle is on before every single post",
     "Reach 1,000 followers to unlock the bio link",
     "Keep qualifying DM leads before offering the free call, Ankett's time goes to real prospects",
   ],
