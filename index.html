@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ankett S Kedia | TikTok Report</title>
+<meta name="description" content="Weekly TikTok performance report for Ankett S Kedia, maintained by Shabbir.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <span class="brand-mark">AK</span>
+      <div class="brand-text">
+        <div class="brand-name">Ankett S Kedia</div>
+        <div class="brand-sub">TikTok performance report</div>
+      </div>
+    </div>
+    <nav class="top-nav">
+      <a href="#overview">Overview</a>
+      <a href="#videos">Videos</a>
+      <a href="#issues">Issues &amp; fixes</a>
+      <a href="#leads">Leads</a>
+      <a href="#next">What's next</a>
+    </nav>
+    <div class="updated">Updated <span id="updatedDate">July 11, 2026</span></div>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" id="overview">
+    <div class="hero-inner">
+      <h1>Week 1, day by day</h1>
+      <p class="hero-note">Three videos are live and being read normally by TikTok. Two attempts on a fourth video were restricted and have been fully diagnosed, details below. Nothing here is a crisis, this is what a brand new account posting daily normally looks like in its first week.</p>
+    </div>
+  </section>
+
+  <section class="kpis">
+    <div class="kpi-grid" id="kpiGrid"></div>
+  </section>
+
+  <section class="trend-row">
+    <div class="trend-card">
+      <div class="trend-head">
+        <h3>Average watch time</h3>
+        <span class="trend-tag good">Improving</span>
+      </div>
+      <div class="chart-wrap" id="chartWatchTime"></div>
+      <p class="trend-caption">Up from 6.5s to 8.3s across the three live posts, each video is holding attention a little longer than the last.</p>
+    </div>
+    <div class="trend-card">
+      <div class="trend-head">
+        <h3>Full-video watch rate</h3>
+        <span class="trend-tag good">Improving</span>
+      </div>
+      <div class="chart-wrap" id="chartFullWatch"></div>
+      <p class="trend-caption">From 2.0% to 3.7% of viewers watching the entire video, still early, but moving the right way.</p>
+    </div>
+  </section>
+
+  <section class="videos" id="videos">
+    <h2>Video by video</h2>
+    <div class="video-list" id="videoList"></div>
+  </section>
+
+  <section class="issues" id="issues">
+    <h2>Issues &amp; fixes</h2>
+    <p class="section-note">Every restriction gets diagnosed properly and logged here, so the same mistake doesn't get repeated.</p>
+    <div class="timeline" id="timeline"></div>
+  </section>
+
+  <section class="leads" id="leads">
+    <h2>Leads captured</h2>
+    <div class="table-wrap">
+      <table id="leadsTable">
+        <thead>
+          <tr><th>Name</th><th>From video</th><th>Date</th><th>Status</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="next" id="next">
+    <h2>What's next</h2>
+    <ul class="next-list" id="nextList"></ul>
+  </section>
+
+</main>
+
+<footer class="foot">
+  Maintained by Shabbir. This page updates as new data comes in, no need to ask for a new report, just check back here.
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
