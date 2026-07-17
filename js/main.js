@@ -12,14 +12,26 @@ REPORT.kpis.forEach(k => {
 // ---------- trend cards ----------
 renderLineChart(
   document.getElementById("chartWatchTime"),
-  REPORT.watchTimeTrend.map((v, i) => ({ x: `Post ${i + 1}`, y: v })),
-  { width: 460, height: 110, unit: "s", ariaLabel: "Average watch time by post" }
+  REPORT.viewsTrend.map((v, i) => ({ x: `Post ${i + 1}`, y: v })),
+  { width: 460, height: 110, unit: "", ariaLabel: "Views by post" }
 );
 renderLineChart(
   document.getElementById("chartFullWatch"),
-  REPORT.fullWatchTrend.map((v, i) => ({ x: `Post ${i + 1}`, y: v })),
-  { width: 460, height: 110, unit: "%", ariaLabel: "Full-video watch rate by post" }
+  REPORT.likesTrend.map((v, i) => ({ x: `Post ${i + 1}`, y: v })),
+  { width: 460, height: 110, unit: "", ariaLabel: "Likes by post" }
 );
+
+// ---------- diagnosis band ----------
+if (REPORT.diagnosis) {
+  const dHead = document.getElementById("diagHeadline");
+  const dList = document.getElementById("diagList");
+  if (dHead) dHead.textContent = REPORT.diagnosis.headline;
+  if (dList) REPORT.diagnosis.points.forEach(p => {
+    const li = document.createElement("li");
+    li.textContent = p;
+    dList.appendChild(li);
+  });
+}
 
 // ---------- video cards ----------
 const videoList = document.getElementById("videoList");
@@ -28,14 +40,12 @@ REPORT.videos.forEach(v => {
   const card = document.createElement("div");
   card.className = "video-card";
 
-  const chartId = "chart_" + Math.random().toString(36).slice(2);
-  const statsHtml = v.chart
+  const statsHtml = v.status !== "deleted"
     ? `<div class="stat-row">
         <div><div class="stat-label">Views</div><div class="stat-value">${v.views}</div></div>
         <div><div class="stat-label">Likes</div><div class="stat-value">${v.likes ?? "n/a"}</div></div>
-        <div><div class="stat-label">Avg watch</div><div class="stat-value">${v.avgWatch}</div></div>
-        <div><div class="stat-label">Full watch</div><div class="stat-value">${v.fullWatch}</div></div>
-        <div><div class="stat-label">New followers</div><div class="stat-value">${v.followers}</div></div>
+        <div><div class="stat-label">Comments</div><div class="stat-value">${v.comments ?? "n/a"}</div></div>
+        <div><div class="stat-label">Shares</div><div class="stat-value">${v.shares ?? "n/a"}</div></div>
       </div>`
     : `<div class="stat-row"><div><div class="stat-label">Views before restriction</div><div class="stat-value">${v.views}</div></div></div>`;
 
@@ -48,17 +58,10 @@ REPORT.videos.forEach(v => {
       <span class="status-badge ${v.status}"><span class="dot"></span>${statusLabel[v.status]}</span>
     </div>
     <div class="video-body">
-      <div class="video-chart" id="${chartId}"></div>
       ${statsHtml}
     </div>
   `;
   videoList.appendChild(card);
-
-  if (v.chart) {
-    renderLineChart(document.getElementById(chartId), v.chart, { width: 220, height: 100, ariaLabel: v.sub + " views over time" });
-  } else {
-    document.getElementById(chartId).innerHTML = '<div style="font-size:12.5px;color:var(--muted);padding-top:30px;text-align:center;">No chart, restricted before meaningful data</div>';
-  }
 });
 
 // ---------- issues timeline ----------

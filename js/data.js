@@ -4,20 +4,20 @@
    ============================================================ */
 
 const REPORT = {
-  updated: "July 11, 2026",
+  updated: "July 17, 2026",
 
   kpis: [
-    { label: "Videos live", value: "3", neutral: true },
-    { label: "Total views (live)", value: "1,039" },
-    { label: "Total likes", value: "28" },
-    { label: "New followers", value: "5" },
-    { label: "Leads captured", value: "1" },
+    { label: "Videos live", value: "8", neutral: true },
+    { label: "Total views", value: "2,667" },
+    { label: "Total likes", value: "78" },
+    { label: "Comments", value: "2" },
+    { label: "Followers", value: "8" },
     { label: "Calls booked", value: "0", neutral: true },
   ],
 
   // one point per video, in the order posted, used for the two trend cards
-  watchTimeTrend: [6.54, 6.89, 8.27],
-  fullWatchTrend: [2.1, 3.7, 3.3],
+  viewsTrend: [743, 170, 166, 171, 178, 176, 534, 529],
+  likesTrend: [18, 8, 6, 7, 3, 2, 21, 13],
 
   videos: [
     {
@@ -25,49 +25,76 @@ const REPORT = {
       sub: "Weighted Decision Matrix",
       posted: "Jul 9, 2026",
       status: "live",
-      views: 731, likes: 17, comments: 0, shares: 2, saves: 5,
-      avgWatch: "6.89s", fullWatch: "2.0%", followers: 2,
-      chart: [
-        { x: "Jul 9", y: 731 },
-        { x: "Jul 10", y: 6 },
-        { x: "Jul 11", y: 0 },
-      ],
+      views: 743, likes: 18, comments: 0, shares: 3,
     },
     {
       title: "Gen Z didn't get handed a playbook. My generation had one, real mentorship...",
       sub: "Gen Z is playing on hard mode",
       posted: "Jul 10, 2026",
       status: "live",
-      views: 155, likes: 7, comments: 0, shares: 0, saves: 0,
-      avgWatch: "6.89s", fullWatch: "3.7%", followers: 0,
-      chart: [
-        { x: "0h", y: 0 }, { x: "1h", y: 26 }, { x: "2h", y: 20 }, { x: "3h", y: 16 },
-        { x: "4h", y: 60 }, { x: "5h", y: 78 }, { x: "6h", y: 6 }, { x: "7h", y: 1 },
-        { x: "12h", y: 5 }, { x: "18h", y: 0 },
-      ],
+      views: 170, likes: 8, comments: 1, shares: 0,
     },
     {
       title: "Everyone wants to build the exciting business. The app, the brand, the thing p...",
       sub: "Which boring business do you like",
       posted: "Jul 11, 2026",
       status: "live",
-      views: 153, likes: 4, comments: 0, shares: 0, saves: 1,
-      avgWatch: "8.27s", fullWatch: "3.3%", followers: 2,
-      chart: [
-        { x: "0h", y: 0 }, { x: "1h", y: 26 }, { x: "2h", y: 15 }, { x: "3h", y: 20 },
-        { x: "4h", y: 26 }, { x: "5h", y: 20 }, { x: "6h", y: 55 }, { x: "7h", y: 10 }, { x: "8h", y: 0 },
-      ],
+      views: 166, likes: 6, comments: 1, shares: 0,
+    },
+    {
+      title: "A pricing mistake turned into a luxury strategy. When Richard Mille launched...",
+      sub: "Richard Mille luxury strategy",
+      posted: "Jul 12, 2026",
+      status: "live",
+      views: 171, likes: 7, comments: 0, shares: 0,
+    },
+    {
+      title: "Skip this if you don't have an older sibling. Research found the younger sibling...",
+      sub: "The Leapfrog effect",
+      posted: "Jul 13, 2026",
+      status: "live",
+      views: 178, likes: 3, comments: 0, shares: 1,
+    },
+    {
+      title: "Nobody talks about this privilege, and it has nothing to do with how much money...",
+      sub: "The hidden family tax",
+      posted: "Jul 14, 2026",
+      status: "live",
+      views: 176, likes: 2, comments: 0, shares: 0,
+    },
+    {
+      title: "You will never see a billionaire's kid at a cricket academy or a dance class...",
+      sub: "Hobbies rich families choose",
+      posted: "Jul 15, 2026",
+      status: "live",
+      views: 534, likes: 21, comments: 0, shares: 3,
+    },
+    {
+      title: "People say Elon Musk succeeded because his father was rich. People who say this...",
+      sub: "The 4 unfair advantages",
+      posted: "Jul 16, 2026",
+      status: "live",
+      views: 529, likes: 13, comments: 0, shares: 0,
     },
     {
       title: "Nike's downfall will be studied for decades (two attempts, both restricted)",
       sub: "Pulled from the account, see Issues & fixes",
       posted: "Jul 10, 2026",
       status: "deleted",
-      views: 7, likes: null, comments: null, shares: null, saves: null,
-      avgWatch: "n/a", fullWatch: "n/a", followers: 0,
-      chart: null,
+      views: 7, likes: null, comments: null, shares: null,
     },
   ],
+
+  // the honest read on where growth is stuck, shown as a callout band
+  diagnosis: {
+    headline: "Reach is recovering. Follows are the bottleneck.",
+    points: [
+      "97.9% of views come from the For You feed, so TikTok is distributing the videos normally. This is not a suppression problem.",
+      "The last two posts (534 and 529 views) tripled the mid-week plateau of ~170, so reach is trending back up as the account ages.",
+      "2,667 views turned into 52 profile visits and 8 followers. The leak is not reach, it is that viewers watch, enjoy, and scroll on without a reason to follow.",
+      "2 comments across 8 videos is the single biggest thing holding distribution back, comments are the strongest signal TikTok uses to push a video wider.",
+    ],
+  },
 
   timeline: [
     {
@@ -83,7 +110,12 @@ const REPORT = {
     {
       date: "Jul 10, 2026", resolved: true,
       title: "Video pulled, posting rule established",
-      body: "Deleted rather than attempt a third edit. New screening rule going forward: no video that names a real person or company alongside a specific financial figure or a decline claim. Five additional candidate videos were screened against this rule before the next post went out.",
+      body: "Deleted rather than attempt a third edit. New screening rule going forward: no video that names a real person or company alongside a specific financial figure or a decline claim. Every candidate video is now screened against this rule before it goes out.",
+    },
+    {
+      date: "Jul 17, 2026", resolved: true,
+      title: "Week 2 diagnosis: shifting from reach to follows",
+      body: "Reach is healthy and recovering, but almost none of it converts to follows. Root cause: the videos ask viewers to &quot;comment CALL&quot; (a high-commitment ask for a cold audience) with no simple follow reason and no engagement loop. Fix plan is in What's next, focused on follow CTAs, seeded comments, a named recurring series, and a tightened profile.",
     },
   ],
 
@@ -92,10 +124,11 @@ const REPORT = {
   ],
 
   next: [
-    "Post daily, same window, 2am UAE / 6pm US Eastern",
-    "Reply to every comment and DM within 2 hours",
-    "Screen every new video for real names, companies, or financial figures before it goes up",
-    "Reach 1,000 followers to unlock the bio link",
-    "Keep qualifying DM leads before offering the free call, Ankett's time goes to real prospects",
+    "Replace the &quot;comment CALL&quot; ask with a simple follow reason on every video, for example &quot;I break down one of these every day, follow so tomorrow's finds you.&quot;",
+    "Seed the first comment within 30 minutes of posting from a second account, a real question that invites replies, then reply to every comment that lands.",
+    "Turn the content into a named recurring series so a viewer knows exactly what they are following, not eight unrelated business takes.",
+    "Tighten the profile itself, since 52 people visited it and almost none followed: sharper one-line bio, a clear profile photo, and the three best videos pinned to the top.",
+    "Strengthen the first two seconds of every video so viewers get curious about who is talking, that is what turns a view into a profile visit.",
+    "Keep posting daily in the same window, the account is only 8 days old and consistency is still the biggest single growth lever right now.",
   ],
 };
