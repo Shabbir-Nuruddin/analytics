@@ -119,12 +119,10 @@ const REPORT = {
     },
   ],
 
-  leads: [
-    { name: "Reshma Thomas", video: "Weighted Decision Matrix", date: "Jul 9, 2026", status: "pending" },
-  ],
+  leads: [],
 
   next: [
-    "Replace the &quot;comment CALL&quot; ask with a simple follow reason on every video, for example &quot;I break down one of these every day, follow so tomorrow's finds you.&quot;",
+    "Replace the \"comment CALL\" ask with a simple follow reason on every video, for example \"I break down one of these every day, follow so tomorrow's finds you.\"",
     "Seed the first comment within 30 minutes of posting from a second account, a real question that invites replies, then reply to every comment that lands.",
     "Turn the content into a named recurring series so a viewer knows exactly what they are following, not eight unrelated business takes.",
     "Tighten the profile itself, since 52 people visited it and almost none followed: sharper one-line bio, a clear profile photo, and the three best videos pinned to the top.",

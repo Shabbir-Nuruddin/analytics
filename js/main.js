@@ -79,16 +79,22 @@ REPORT.timeline.forEach(t => {
 
 // ---------- leads table ----------
 const leadsBody = document.querySelector("#leadsTable tbody");
-REPORT.leads.forEach(l => {
+if (REPORT.leads.length === 0) {
   const tr = document.createElement("tr");
-  tr.innerHTML = `
-    <td>${l.name}</td>
-    <td>${l.video}</td>
-    <td>${l.date}</td>
-    <td><span class="pill ${l.status}">${l.status === "booked" ? "Booked" : "Pending"}</span></td>
-  `;
+  tr.innerHTML = `<td colspan="4" class="empty-cell">No qualified leads yet. The follow and comment fixes in What's next are aimed at changing this.</td>`;
   leadsBody.appendChild(tr);
-});
+} else {
+  REPORT.leads.forEach(l => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${l.name}</td>
+      <td>${l.video}</td>
+      <td>${l.date}</td>
+      <td><span class="pill ${l.status}">${l.status === "booked" ? "Booked" : l.status === "lost" ? "Lost" : "Pending"}</span></td>
+    `;
+    leadsBody.appendChild(tr);
+  });
+}
 
 // ---------- next steps ----------
 const nextList = document.getElementById("nextList");
