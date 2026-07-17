@@ -64,16 +64,4 @@ REPORT.videos.forEach(v => {
   videoList.appendChild(card);
 });
 
-// ---------- issues timeline ----------
-const timeline = document.getElementById("timeline");
-REPORT.timeline.forEach(t => {
-  const item = document.createElement("div");
-  item.className = "tl-item" + (t.resolved ? " resolved" : "");
-  item.innerHTML = `
-    <div class="tl-date">${t.date}</div>
-    <div class="tl-title">${t.title}</div>
-    <div class="tl-body">${t.body}</div>
-  `;
-  timeline.appendChild(item);
-});
 

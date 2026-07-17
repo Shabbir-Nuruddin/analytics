@@ -76,13 +76,6 @@ const REPORT = {
       status: "live",
       views: 529, likes: 13, comments: 0, shares: 0,
     },
-    {
-      title: "Nike's downfall will be studied for decades (two attempts, both restricted)",
-      sub: "Pulled from the account, see Issues & fixes",
-      posted: "Jul 10, 2026",
-      status: "deleted",
-      views: 7, likes: null, comments: null, shares: null,
-    },
   ],
 
   // the honest read on where growth is stuck, shown as a callout band
@@ -95,28 +88,5 @@ const REPORT = {
       "2 comments across 8 videos is the single biggest thing holding distribution back, comments are the strongest signal TikTok uses to push a video wider.",
     ],
   },
-
-  timeline: [
-    {
-      date: "Jul 10, 2026", resolved: false,
-      title: "Nike's downfall (original edit) restricted",
-      body: "Video was made ineligible for the For You feed under TikTok's Integrity &amp; Authenticity policy. Initial diagnosis pointed at the on-screen stock chart, showing a real company's share price falling alongside dramatic language can read as a financial claim.",
-    },
-    {
-      date: "Jul 10, 2026", resolved: false,
-      title: "Re-edit restricted again",
-      body: "Removed the stock-chart segment and reposted. Restricted a second time. Revised diagnosis: the video names a real, publicly traded company (Nike) and frames its performance as declining, and that pattern itself appears to be the trigger, since an earlier post used similar B-roll without issue.",
-    },
-    {
-      date: "Jul 10, 2026", resolved: true,
-      title: "Video pulled, posting rule established",
-      body: "Deleted rather than attempt a third edit. New screening rule going forward: no video that names a real person or company alongside a specific financial figure or a decline claim. Every candidate video is now screened against this rule before it goes out.",
-    },
-    {
-      date: "Jul 17, 2026", resolved: true,
-      title: "Week 2 diagnosis: shifting from reach to follows",
-      body: "Reach is healthy and recovering, but almost none of it converts to follows. Root cause: the videos ask viewers to &quot;comment CALL&quot; (a high-commitment ask for a cold audience) with no simple follow reason and no engagement loop. Fix plan is in What's next, focused on follow CTAs, seeded comments, a named recurring series, and a tightened profile.",
-    },
-  ],
 
 };
