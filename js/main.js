@@ -21,18 +21,6 @@ renderLineChart(
   { width: 460, height: 110, unit: "", ariaLabel: "Likes by post" }
 );
 
-// ---------- diagnosis band ----------
-if (REPORT.diagnosis) {
-  const dHead = document.getElementById("diagHeadline");
-  const dList = document.getElementById("diagList");
-  if (dHead) dHead.textContent = REPORT.diagnosis.headline;
-  if (dList) REPORT.diagnosis.points.forEach(p => {
-    const li = document.createElement("li");
-    li.textContent = p;
-    dList.appendChild(li);
-  });
-}
-
 // ---------- daily performance ----------
 if (REPORT.dailyPerf) {
   renderLineChart(
@@ -52,7 +40,7 @@ if (REPORT.dailyPerf) {
     tr.innerHTML = `
       <td>${d.date}</td>
       <td>${d.views}</td>
-      <td>${d.profileViews}</td>
+      <td>${d.profileViews ?? "&ndash;"}</td>
       <td>${d.likes}</td>
       <td>${d.comments}</td>
       <td>${d.shares}</td>
@@ -69,18 +57,12 @@ sortedVideos.forEach(v => {
   const card = document.createElement("div");
   card.className = "video-card";
 
-  const extraStats = (v.avgWatch || v.fullWatch)
-    ? `
-        <div><div class="stat-label">Avg watch</div><div class="stat-value">${v.avgWatch ?? "n/a"}</div></div>
-        <div><div class="stat-label">Full watch</div><div class="stat-value">${v.fullWatch ?? "n/a"}</div></div>`
-    : "";
-
   const statsHtml = v.status !== "deleted"
     ? `<div class="stat-row">
         <div><div class="stat-label">Views</div><div class="stat-value">${v.views}</div></div>
         <div><div class="stat-label">Likes</div><div class="stat-value">${v.likes ?? "n/a"}</div></div>
         <div><div class="stat-label">Comments</div><div class="stat-value">${v.comments ?? "n/a"}</div></div>
-        <div><div class="stat-label">Shares</div><div class="stat-value">${v.shares ?? "n/a"}</div></div>${extraStats}
+        <div><div class="stat-label">Shares</div><div class="stat-value">${v.shares ?? "n/a"}</div></div>
       </div>`
     : `<div class="stat-row"><div><div class="stat-label">Views before restriction</div><div class="stat-value">${v.views}</div></div></div>`;
 

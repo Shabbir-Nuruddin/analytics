@@ -110,20 +110,8 @@ const REPORT = {
       posted: "Jul 21, 2026",
       status: "live",
       views: 1200, likes: 19, comments: 0, shares: 1,
-      avgWatch: "17.58s", fullWatch: "15.5%",
     },
   ],
-
-  // the honest read on where growth is stuck, shown as a callout band
-  diagnosis: {
-    headline: "The account is trending up. Converting views into follows is next.",
-    points: [
-      "Watch time just hit a new high: the Jul 21 Messi post held viewers for an average of 17.58 seconds, up from the previous best of 10.24s. Watch time keeps climbing post over post, that is the algorithm's favorite signal and it is moving the right way.",
-      "Reach is climbing too: the last 5 posts (Jul 17 to Jul 21) average well over 500 views each, more than double the account's first-week baseline. Two posts have now broken 1,000 views, and one broke 2,200.",
-      "The first real comment signal just showed up: 4 comments landed on Jul 19 and 4 more on Jul 20, after two weeks of near-zero. Engagement is starting to move alongside reach and watch time.",
-      "The one gap left: none of this has converted into new followers yet. The account is getting seen for longer and by more people, the next job is giving those viewers a reason to hit follow.",
-    ],
-  },
 
   // account-wide totals per day, a different granularity than the per-video table above
   dailyPerf: [
@@ -134,6 +122,7 @@ const REPORT = {
     { date: "Jul 18", views: 850,  profileViews: 8, likes: 30, comments: 0, shares: 4 },
     { date: "Jul 19", views: 472,  profileViews: 3, likes: 3,  comments: 4, shares: 2 },
     { date: "Jul 20", views: 494,  profileViews: 7, likes: 7,  comments: 4, shares: 0 },
+    { date: "Jul 21", views: 1200, profileViews: null, likes: 19, comments: 0, shares: 1 },
   ],
 
 };
