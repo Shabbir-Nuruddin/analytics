@@ -4,7 +4,7 @@
    ============================================================ */
 
 const REPORT = {
-  updated: "July 18, 2026",
+  updated: "July 20, 2026",
 
   kpis: [
     { label: "Videos live", value: "9", neutral: true },
@@ -91,9 +91,20 @@ const REPORT = {
     points: [
       "One video proved the point this week: the Jul 14 post quietly climbed from 176 to 2,237 views, and produced 0 new followers, 2 likes, and 0 comments. TikTok gave it the audience, the audience did not convert.",
       "Distribution is healthy across the board: For You accounts for 95% to 100% of views on every post, so the videos are being pushed to strangers, not suppressed.",
-      "The single biggest lever is engagement: 2 comments across 9 videos. Comments are the strongest signal TikTok uses to push a video wider, and near-zero comments cap even a video that reaches thousands.",
+      "The first real comment signal just showed up: 4 comments landed on Jul 19 and 4 more on Jul 20, after two weeks of near-zero. That is the single biggest lever for reach, and it just started moving in the right direction.",
       "Watch quality is actually improving, the newest post held an average watch of 10.24s, the highest yet. People who stay are engaged. The gap is that almost none of them are given a reason to follow.",
     ],
   },
+
+  // account-wide totals per day, a different granularity than the per-video table above
+  dailyPerf: [
+    { date: "Jul 14", views: 220,  profileViews: 2, likes: 8,  comments: 0, shares: 2 },
+    { date: "Jul 15", views: 521,  profileViews: 3, likes: 29, comments: 0, shares: 1 },
+    { date: "Jul 16", views: 522,  profileViews: 7, likes: 9,  comments: 0, shares: 0 },
+    { date: "Jul 17", views: 2566, profileViews: 7, likes: 14, comments: 0, shares: 3 },
+    { date: "Jul 18", views: 850,  profileViews: 8, likes: 30, comments: 0, shares: 4 },
+    { date: "Jul 19", views: 472,  profileViews: 3, likes: 3,  comments: 4, shares: 2 },
+    { date: "Jul 20", views: 494,  profileViews: 7, likes: 7,  comments: 4, shares: 0 },
+  ],
 
 };

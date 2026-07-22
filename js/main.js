@@ -33,6 +33,34 @@ if (REPORT.diagnosis) {
   });
 }
 
+// ---------- daily performance ----------
+if (REPORT.dailyPerf) {
+  renderLineChart(
+    document.getElementById("chartDailyViews"),
+    REPORT.dailyPerf.map(d => ({ x: d.date, y: d.views })),
+    { width: 460, height: 110, unit: "", ariaLabel: "Views per day" }
+  );
+  renderLineChart(
+    document.getElementById("chartDailyComments"),
+    REPORT.dailyPerf.map(d => ({ x: d.date, y: d.comments })),
+    { width: 460, height: 110, unit: "", ariaLabel: "Comments per day" }
+  );
+
+  const dailyBody = document.querySelector("#dailyTable tbody");
+  REPORT.dailyPerf.forEach(d => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${d.date}</td>
+      <td>${d.views}</td>
+      <td>${d.profileViews}</td>
+      <td>${d.likes}</td>
+      <td>${d.comments}</td>
+      <td>${d.shares}</td>
+    `;
+    dailyBody.appendChild(tr);
+  });
+}
+
 // ---------- video cards ----------
 const videoList = document.getElementById("videoList");
 const statusLabel = { live: "Live", restricted: "Restricted", deleted: "Pulled" };

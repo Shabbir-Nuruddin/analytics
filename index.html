@@ -20,6 +20,7 @@
     </div>
     <nav class="top-nav">
       <a href="#overview">Overview</a>
+      <a href="#daily">Daily</a>
       <a href="#videos">Videos</a>
     </nav>
     <div class="updated">Updated <span id="updatedDate">July 11, 2026</span></div>
@@ -63,6 +64,37 @@
       </div>
       <div class="chart-wrap" id="chartFullWatch"></div>
       <p class="trend-caption">Likes stay flat even when views explode: the 2,237-view post drew just 2 likes. Engagement is not scaling with reach, and that gap is the core problem to solve.</p>
+    </div>
+  </section>
+
+  <section class="daily" id="daily">
+    <h2>Daily performance</h2>
+    <p class="section-note">Account-wide totals per day, across every live video, a different lens than the per-video table below.</p>
+    <div class="trend-row" style="padding:0; margin-top:16px;">
+      <div class="trend-card">
+        <div class="trend-head">
+          <h3>Views per day</h3>
+          <span class="trend-tag good">Recovering</span>
+        </div>
+        <div class="chart-wrap" id="chartDailyViews"></div>
+        <p class="trend-caption">Jul 17 spiked to 2,566 views in a single day, most of it the Jul 14 post resurfacing. Every other day sits between 220 and 850.</p>
+      </div>
+      <div class="trend-card">
+        <div class="trend-head">
+          <h3>Comments per day</h3>
+          <span class="trend-tag good">New signal</span>
+        </div>
+        <div class="chart-wrap" id="chartDailyComments"></div>
+        <p class="trend-caption">Zero comments for the first five days on this chart, then 4 on Jul 19 and 4 on Jul 20. First real sign of two-way engagement.</p>
+      </div>
+    </div>
+    <div class="table-wrap" style="margin-top:16px;">
+      <table id="dailyTable">
+        <thead>
+          <tr><th>Date</th><th>Views</th><th>Profile visits</th><th>Likes</th><th>Comments</th><th>Shares</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </div>
   </section>
 
