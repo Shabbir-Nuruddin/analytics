@@ -132,7 +132,7 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.01em; }
 .status-badge.deleted .dot { background: var(--muted); }
 
 .video-body { margin-top: 14px; }
-.stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 460px; }
+.stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 10px; max-width: 680px; }
 .stat-row .stat-label { font-size: 11px; color: var(--muted); }
 .stat-row .stat-value { font-size: 16px; font-weight: 700; margin-top: 2px; }
 

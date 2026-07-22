@@ -8,7 +8,7 @@ const REPORT = {
 
   kpis: [
     { label: "Videos live", value: "13", neutral: true },
-    { label: "Total views", value: "8,222" },
+    { label: "Total views", value: "8,235" },
     { label: "Total likes", value: "143" },
     { label: "Comments", value: "10" },
     { label: "Followers", value: "8" },
@@ -16,7 +16,7 @@ const REPORT = {
   ],
 
   // one point per video, in the order posted, used for the two trend cards
-  viewsTrend: [746, 172, 167, 173, 181, 2246, 540, 533, 503, 822, 483, 469, 1187],
+  viewsTrend: [746, 172, 167, 173, 181, 2246, 540, 533, 503, 822, 483, 469, 1200],
   likesTrend: [18, 8, 6, 8, 4, 3, 22, 14, 10, 21, 4, 6, 19],
 
   videos: [
@@ -109,18 +109,19 @@ const REPORT = {
       sub: "The two engines of athlete wealth",
       posted: "Jul 21, 2026",
       status: "live",
-      views: 1187, likes: 19, comments: 0, shares: 0,
+      views: 1200, likes: 19, comments: 0, shares: 1,
+      avgWatch: "17.58s", fullWatch: "15.5%",
     },
   ],
 
   // the honest read on where growth is stuck, shown as a callout band
   diagnosis: {
-    headline: "Reach is not the problem. Converting it to follows is.",
+    headline: "The account is trending up. Converting views into follows is next.",
     points: [
-      "One video proved the point this week: the Jul 14 post quietly climbed from 176 to 2,246 views, and produced 0 new followers, 3 likes, and 1 comment. TikTok gave it the audience, the audience barely converted.",
-      "Distribution is healthy across the board: For You accounts for 95% to 100% of views on every post, so the videos are being pushed to strangers, not suppressed.",
-      "The first real comment signal just showed up: 4 comments landed on Jul 19 and 4 more on Jul 20, after two weeks of near-zero. That is the single biggest lever for reach, and it just started moving in the right direction.",
-      "Watch quality is actually improving, the newest post held an average watch of 10.24s, the highest yet. People who stay are engaged. The gap is that almost none of them are given a reason to follow.",
+      "Watch time just hit a new high: the Jul 21 Messi post held viewers for an average of 17.58 seconds, up from the previous best of 10.24s. Watch time keeps climbing post over post, that is the algorithm's favorite signal and it is moving the right way.",
+      "Reach is climbing too: the last 5 posts (Jul 17 to Jul 21) average well over 500 views each, more than double the account's first-week baseline. Two posts have now broken 1,000 views, and one broke 2,200.",
+      "The first real comment signal just showed up: 4 comments landed on Jul 19 and 4 more on Jul 20, after two weeks of near-zero. Engagement is starting to move alongside reach and watch time.",
+      "The one gap left: none of this has converted into new followers yet. The account is getting seen for longer and by more people, the next job is giving those viewers a reason to hit follow.",
     ],
   },
 

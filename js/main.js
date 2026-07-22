@@ -61,19 +61,26 @@ if (REPORT.dailyPerf) {
   });
 }
 
-// ---------- video cards ----------
+// ---------- video cards, highest views first ----------
 const videoList = document.getElementById("videoList");
 const statusLabel = { live: "Live", restricted: "Restricted", deleted: "Pulled" };
-REPORT.videos.forEach(v => {
+const sortedVideos = [...REPORT.videos].sort((a, b) => b.views - a.views);
+sortedVideos.forEach(v => {
   const card = document.createElement("div");
   card.className = "video-card";
+
+  const extraStats = (v.avgWatch || v.fullWatch)
+    ? `
+        <div><div class="stat-label">Avg watch</div><div class="stat-value">${v.avgWatch ?? "n/a"}</div></div>
+        <div><div class="stat-label">Full watch</div><div class="stat-value">${v.fullWatch ?? "n/a"}</div></div>`
+    : "";
 
   const statsHtml = v.status !== "deleted"
     ? `<div class="stat-row">
         <div><div class="stat-label">Views</div><div class="stat-value">${v.views}</div></div>
         <div><div class="stat-label">Likes</div><div class="stat-value">${v.likes ?? "n/a"}</div></div>
         <div><div class="stat-label">Comments</div><div class="stat-value">${v.comments ?? "n/a"}</div></div>
-        <div><div class="stat-label">Shares</div><div class="stat-value">${v.shares ?? "n/a"}</div></div>
+        <div><div class="stat-label">Shares</div><div class="stat-value">${v.shares ?? "n/a"}</div></div>${extraStats}
       </div>`
     : `<div class="stat-row"><div><div class="stat-label">Views before restriction</div><div class="stat-value">${v.views}</div></div></div>`;
 
