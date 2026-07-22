@@ -11,7 +11,7 @@ const REPORT = {
     { label: "Total views", value: "8,235" },
     { label: "Total likes", value: "143" },
     { label: "Comments", value: "10" },
-    { label: "Followers", value: "8" },
+    { label: "Followers", value: "11" },
     { label: "Calls booked", value: "0", neutral: true },
   ],
 
