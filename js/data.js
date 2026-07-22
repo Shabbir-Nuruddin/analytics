@@ -8,15 +8,15 @@ const REPORT = {
 
   kpis: [
     { label: "Videos live", value: "13", neutral: true },
-    { label: "Total views", value: "8,235" },
-    { label: "Total likes", value: "143" },
+    { label: "Total views", value: "8,304" },
+    { label: "Total likes", value: "144" },
     { label: "Comments", value: "10" },
     { label: "Followers", value: "11" },
     { label: "Calls booked", value: "0", neutral: true },
   ],
 
   // one point per video, in the order posted, used for the two trend cards
-  viewsTrend: [746, 172, 167, 173, 181, 2246, 540, 533, 503, 822, 483, 469, 1200],
+  viewsTrend: [746, 172, 167, 173, 181, 2246, 540, 533, 503, 822, 483, 469, 1269],
   likesTrend: [18, 8, 6, 8, 4, 3, 22, 14, 10, 21, 4, 6, 19],
 
   videos: [
@@ -109,7 +109,7 @@ const REPORT = {
       sub: "The two engines of athlete wealth",
       posted: "Jul 21, 2026",
       status: "live",
-      views: 1200, likes: 19, comments: 0, shares: 1,
+      views: 1269, likes: 19, comments: 0, shares: 1,
     },
   ],
 
@@ -122,7 +122,7 @@ const REPORT = {
     { date: "Jul 18", views: 850,  profileViews: 8, likes: 30, comments: 0, shares: 4 },
     { date: "Jul 19", views: 472,  profileViews: 3, likes: 3,  comments: 4, shares: 2 },
     { date: "Jul 20", views: 494,  profileViews: 7, likes: 7,  comments: 4, shares: 0 },
-    { date: "Jul 21", views: 1200, profileViews: null, likes: 19, comments: 0, shares: 1 },
+    { date: "Jul 21", views: 1269, profileViews: null, likes: 19, comments: 0, shares: 1 },
   ],
 
 };
