@@ -4,20 +4,20 @@
    ============================================================ */
 
 const REPORT = {
-  updated: "July 20, 2026",
+  updated: "July 21, 2026",
 
   kpis: [
-    { label: "Videos live", value: "11", neutral: true },
-    { label: "Total views", value: "6,566" },
-    { label: "Total likes", value: "118" },
-    { label: "Comments", value: "6" },
+    { label: "Videos live", value: "13", neutral: true },
+    { label: "Total views", value: "8,222" },
+    { label: "Total likes", value: "143" },
+    { label: "Comments", value: "10" },
     { label: "Followers", value: "8" },
     { label: "Calls booked", value: "0", neutral: true },
   ],
 
   // one point per video, in the order posted, used for the two trend cards
-  viewsTrend: [746, 172, 167, 173, 181, 2246, 540, 533, 503, 822, 483],
-  likesTrend: [18, 8, 6, 8, 4, 3, 22, 14, 10, 21, 4],
+  viewsTrend: [746, 172, 167, 173, 181, 2246, 540, 533, 503, 822, 483, 469, 1187],
+  likesTrend: [18, 8, 6, 8, 4, 3, 22, 14, 10, 21, 4, 6, 19],
 
   videos: [
     {
@@ -96,6 +96,20 @@ const REPORT = {
       posted: "Jul 19, 2026",
       status: "live",
       views: 483, likes: 4, comments: 0, shares: 0,
+    },
+    {
+      title: "11 lakh engineers. Zero products. One very old explanation. Infosys, Wipro, and TCS...",
+      sub: "The Ringelmann effect",
+      posted: "Jul 20, 2026",
+      status: "live",
+      views: 469, likes: 6, comments: 4, shares: 0,
+    },
+    {
+      title: "Messi's left foot is insured for more than Virat Kohli, MS Dhoni, and Sachin Tendulkar's...",
+      sub: "The two engines of athlete wealth",
+      posted: "Jul 21, 2026",
+      status: "live",
+      views: 1187, likes: 19, comments: 0, shares: 0,
     },
   ],
 
