@@ -4,20 +4,20 @@
    ============================================================ */
 
 const REPORT = {
-  updated: "July 21, 2026",
+  updated: "July 22, 2026",
 
   kpis: [
-    { label: "Videos live", value: "13", neutral: true },
-    { label: "Total views", value: "8,304" },
-    { label: "Total likes", value: "144" },
+    { label: "Videos live", value: "14", neutral: true },
+    { label: "Total views", value: "9,208" },
+    { label: "Total likes", value: "158" },
     { label: "Comments", value: "10" },
     { label: "Followers", value: "11" },
     { label: "Calls booked", value: "0", neutral: true },
   ],
 
   // one point per video, in the order posted, used for the two trend cards
-  viewsTrend: [746, 172, 167, 173, 181, 2246, 540, 533, 503, 822, 483, 469, 1269],
-  likesTrend: [18, 8, 6, 8, 4, 3, 22, 14, 10, 21, 4, 6, 19],
+  viewsTrend: [746, 172, 167, 173, 181, 2246, 540, 533, 503, 822, 483, 469, 1269, 904],
+  likesTrend: [18, 8, 6, 8, 4, 3, 22, 14, 10, 21, 4, 6, 19, 14],
 
   videos: [
     {
@@ -110,6 +110,13 @@ const REPORT = {
       posted: "Jul 21, 2026",
       status: "live",
       views: 1269, likes: 19, comments: 0, shares: 1,
+    },
+    {
+      title: "Harsh Beniwal spent years building a fanbase as the ultimate desi, bold, unfiltered guy...",
+      sub: "Fake accent, real consequences",
+      posted: "Jul 22, 2026",
+      status: "live",
+      views: 904, likes: 14, comments: 0, shares: 0,
     },
   ],
 
