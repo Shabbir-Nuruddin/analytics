@@ -4,20 +4,20 @@
    ============================================================ */
 
 const REPORT = {
-  updated: "July 22, 2026",
+  updated: "July 23, 2026",
 
   kpis: [
-    { label: "Videos live", value: "14", neutral: true },
-    { label: "Total views", value: "9,208" },
-    { label: "Total likes", value: "158" },
-    { label: "Comments", value: "10" },
+    { label: "Videos live", value: "15", neutral: true },
+    { label: "Total views", value: "14,410" },
+    { label: "Total likes", value: "225" },
+    { label: "Comments", value: "11" },
     { label: "Followers", value: "11" },
     { label: "Calls booked", value: "0", neutral: true },
   ],
 
   // one point per video, in the order posted, used for the two trend cards
-  viewsTrend: [746, 172, 167, 173, 181, 2246, 540, 533, 503, 822, 483, 469, 1269, 904],
-  likesTrend: [18, 8, 6, 8, 4, 3, 22, 14, 10, 21, 4, 6, 19, 14],
+  viewsTrend: [746, 172, 167, 173, 181, 2247, 540, 533, 503, 823, 485, 477, 1416, 1134, 4813],
+  likesTrend: [18, 8, 6, 8, 4, 3, 22, 14, 10, 21, 4, 6, 21, 15, 65],
 
   videos: [
     {
@@ -60,7 +60,7 @@ const REPORT = {
       sub: "The hidden family tax",
       posted: "Jul 14, 2026",
       status: "live",
-      views: 2246, likes: 3, comments: 1, shares: 1,
+      views: 2247, likes: 3, comments: 1, shares: 1,
     },
     {
       title: "You will never see a billionaire's kid at a cricket academy or a dance class...",
@@ -88,35 +88,42 @@ const REPORT = {
       sub: "The FIFA astrologer",
       posted: "Jul 18, 2026",
       status: "live",
-      views: 822, likes: 21, comments: 2, shares: 6,
+      views: 823, likes: 21, comments: 2, shares: 6,
     },
     {
       title: "Rich families add children to grow the empire. Poor families add children and split it...",
       sub: "The quantity quality tradeoff",
       posted: "Jul 19, 2026",
       status: "live",
-      views: 483, likes: 4, comments: 0, shares: 0,
+      views: 485, likes: 4, comments: 0, shares: 0,
     },
     {
       title: "11 lakh engineers. Zero products. One very old explanation. Infosys, Wipro, and TCS...",
       sub: "The Ringelmann effect",
       posted: "Jul 20, 2026",
       status: "live",
-      views: 469, likes: 6, comments: 4, shares: 0,
+      views: 477, likes: 6, comments: 4, shares: 0,
     },
     {
       title: "Messi's left foot is insured for more than Virat Kohli, MS Dhoni, and Sachin Tendulkar's...",
       sub: "The two engines of athlete wealth",
       posted: "Jul 21, 2026",
       status: "live",
-      views: 1269, likes: 19, comments: 0, shares: 1,
+      views: 1416, likes: 21, comments: 0, shares: 1,
     },
     {
       title: "Harsh Beniwal spent years building a fanbase as the ultimate desi, bold, unfiltered guy...",
       sub: "Fake accent, real consequences",
       posted: "Jul 22, 2026",
       status: "live",
-      views: 904, likes: 14, comments: 0, shares: 0,
+      views: 1134, likes: 15, comments: 0, shares: 0,
+    },
+    {
+      title: "Everyone jokes about Anand Ambani launching an ice cream brand. Nobody talks about...",
+      sub: "The Ambani succession structure",
+      posted: "Jul 23, 2026",
+      status: "live",
+      views: 4813, likes: 65, comments: 1, shares: 0,
     },
   ],
 
@@ -129,7 +136,9 @@ const REPORT = {
     { date: "Jul 18", views: 850,  profileViews: 8, likes: 30, comments: 0, shares: 4 },
     { date: "Jul 19", views: 472,  profileViews: 3, likes: 3,  comments: 4, shares: 2 },
     { date: "Jul 20", views: 494,  profileViews: 7, likes: 7,  comments: 4, shares: 0 },
-    { date: "Jul 21", views: 1269, profileViews: null, likes: 19, comments: 0, shares: 1 },
+    { date: "Jul 21", views: 1416, profileViews: null, likes: 21, comments: 0, shares: 1 },
+    { date: "Jul 22", views: 1134, profileViews: null, likes: 15, comments: 0, shares: 0 },
+    { date: "Jul 23", views: 4813, profileViews: null, likes: 65, comments: 1, shares: 0 },
   ],
 
 };
