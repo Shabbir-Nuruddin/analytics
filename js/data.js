@@ -4,20 +4,20 @@
    ============================================================ */
 
 const REPORT = {
-  updated: "July 23, 2026",
+  updated: "July 24, 2026",
 
   kpis: [
-    { label: "Videos live", value: "15", neutral: true },
-    { label: "Total views", value: "14,410" },
-    { label: "Total likes", value: "225" },
-    { label: "Comments", value: "11" },
-    { label: "Followers", value: "11" },
+    { label: "Videos live", value: "16", neutral: true },
+    { label: "Total views", value: "26,410" },
+    { label: "Total likes", value: "415" },
+    { label: "Comments", value: "13" },
+    { label: "Followers", value: "20" },
     { label: "Calls booked", value: "0", neutral: true },
   ],
 
   // one point per video, in the order posted, used for the two trend cards
-  viewsTrend: [746, 172, 167, 173, 181, 2247, 540, 533, 503, 823, 485, 477, 1416, 1134, 4813],
-  likesTrend: [18, 8, 6, 8, 4, 3, 22, 14, 10, 21, 4, 6, 21, 15, 65],
+  viewsTrend: [746, 172, 167, 173, 181, 2247, 540, 533, 503, 823, 485, 477, 1416, 1134, 4813, 12000],
+  likesTrend: [18, 8, 6, 8, 4, 3, 22, 14, 10, 21, 4, 6, 21, 15, 65, 190],
 
   videos: [
     {
@@ -125,6 +125,13 @@ const REPORT = {
       status: "live",
       views: 4813, likes: 65, comments: 1, shares: 0,
     },
+    {
+      title: "Alia Bhatt reportedly got paid 30 lakhs to appear on Samay Raina's show. She wasn't...",
+      sub: "Getting blacklisted made him richer",
+      posted: "Jul 24, 2026",
+      status: "live",
+      views: 12000, likes: 190, comments: 2, shares: 7,
+    },
   ],
 
   // account-wide totals per day, a different granularity than the per-video table above
@@ -139,6 +146,7 @@ const REPORT = {
     { date: "Jul 21", views: 1416, profileViews: null, likes: 21, comments: 0, shares: 1 },
     { date: "Jul 22", views: 1134, profileViews: null, likes: 15, comments: 0, shares: 0 },
     { date: "Jul 23", views: 4813, profileViews: null, likes: 65, comments: 1, shares: 0 },
+    { date: "Jul 24", views: 12000, profileViews: null, likes: 190, comments: 2, shares: 7 },
   ],
 
 };
