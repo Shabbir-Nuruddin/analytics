@@ -1,108 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ankett S Kedia | TikTok Report</title>
-<meta name="description" content="Weekly TikTok performance report for Ankett S Kedia, maintained by Shabbir.">
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f4efe5">
+  <title>Ankett S Kedia | TikTok Growth Report</title>
+  <meta name="description" content="TikTok growth and content performance report for Ankett S Kedia.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-<header class="top">
-  <div class="top-inner">
-    <div class="brand">
-      <span class="brand-mark">AK</span>
-      <div class="brand-text">
-        <div class="brand-name">Ankett S Kedia</div>
-        <div class="brand-sub">TikTok performance report</div>
-      </div>
+  <header class="top">
+    <div class="top-inner">
+      <a class="brand" href="#overview" aria-label="Go to report overview">
+        <span class="brand-mark">AK</span>
+        <span><strong>Ankett S Kedia</strong><small>TikTok growth report</small></span>
+      </a>
+      <nav class="top-nav" aria-label="Report navigation">
+        <a href="#overview">Overview</a><a href="#growth">Growth</a><a href="#videos">Content</a>
+      </nav>
+      <div class="updated"><span class="live-dot"></span>Updated <span id="updatedDate"></span></div>
     </div>
-    <nav class="top-nav">
-      <a href="#overview">Overview</a>
-      <a href="#daily">Daily</a>
-      <a href="#videos">Videos</a>
-    </nav>
-    <div class="updated">Updated <span id="updatedDate">July 11, 2026</span></div>
-  </div>
-</header>
+  </header>
 
-<main>
-
-  <section class="hero" id="overview">
-    <div class="hero-inner">
-      <h1>Week 3, nineteen posts in, and still climbing</h1>
-      <p class="hero-note">Nineteen videos are live with 41,698 total views. The Jul 24 post alone pulled 19,000 views and 303 likes, the account's biggest moment yet, and it wasn't a one-off, the two posts after it both cleared 500 views on their own. Reach, engagement, and follower growth are all moving at once now. Full breakdown below.</p>
-    </div>
-  </section>
-
-  <section class="kpis">
-    <div class="kpi-grid" id="kpiGrid"></div>
-  </section>
-
-  <section class="trend-row">
-    <div class="trend-card">
-      <div class="trend-head">
-        <h3>Views per post</h3>
-        <span class="trend-tag good">Reach available</span>
-      </div>
-      <div class="chart-wrap" id="chartWatchTime"></div>
-      <p class="trend-caption">The Jul 24 post broke 19,000 views on its own, the account's biggest post by a wide margin. Jul 23 (7,881) and Jul 25 (3,567) were right behind it. Reach keeps setting new highs.</p>
-    </div>
-    <div class="trend-card">
-      <div class="trend-head">
-        <h3>Likes per post</h3>
-        <span class="trend-tag good">Improving</span>
-      </div>
-      <div class="chart-wrap" id="chartFullWatch"></div>
-      <p class="trend-caption">Likes jumped to 97 then 303 then 46 across the last three posts, a completely different tier from the single and low double digits in week one.</p>
-    </div>
-  </section>
-
-  <section class="daily" id="daily">
-    <h2>Daily performance</h2>
-    <p class="section-note">Account-wide totals per day, across every live video, a different lens than the per-video table below.</p>
-    <div class="trend-row" style="padding:0; margin-top:16px;">
-      <div class="trend-card">
-        <div class="trend-head">
-          <h3>Views per day</h3>
-          <span class="trend-tag good">Rising</span>
+  <main>
+    <section class="hero" id="overview">
+      <div class="eyebrow">Performance snapshot · first 28 posts</div>
+      <div class="hero-grid">
+        <div>
+          <h1>Early consistency turned into <em>real reach.</em></h1>
+          <p id="heroNote" class="hero-note"></p>
         </div>
-        <div class="chart-wrap" id="chartDailyViews"></div>
-        <p class="trend-caption">Jul 24 hit 19,000 views in a single day, more than double the previous best (Jul 23 at 7,881). Each new peak is bigger than the last.</p>
+        <aside class="hero-highlight" aria-label="Breakout result">
+          <span>Breakout post</span><strong>34K</strong><p>views on July 24, followed by another 16K-view post.</p>
+        </aside>
       </div>
-      <div class="trend-card">
-        <div class="trend-head">
-          <h3>Comments per day</h3>
-          <span class="trend-tag good">New signal</span>
+    </section>
+
+    <section class="kpis" aria-label="Key metrics"><div class="kpi-grid" id="kpiGrid"></div></section>
+
+    <section class="growth section" id="growth">
+      <div class="section-head">
+        <div><div class="eyebrow">Growth over time</div><h2>Momentum, day by day</h2></div>
+        <p>Daily account activity from the supplied TikTok export. Hover or tap a chart point for its exact value.</p>
+      </div>
+      <div class="chart-grid">
+        <article class="chart-card chart-card-wide">
+          <div class="chart-head"><div><h3>Daily video views</h3><p>July 9–August 4 · Day 1 to Day 27</p></div><span class="signal"><i></i>Momentum established</span></div>
+          <div class="chart-wrap chart-large" id="chartDailyViews"></div>
+        </article>
+        <article class="chart-card">
+          <div class="chart-head"><div><h3>Views by post</h3><p>All 28 published videos</p></div></div>
+          <div class="chart-wrap" id="chartPostViews"></div>
+        </article>
+        <article class="chart-card">
+          <div class="chart-head"><div><h3>Likes by post</h3><p>Engagement followed reach</p></div></div>
+          <div class="chart-wrap" id="chartPostLikes"></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="story section">
+      <div class="section-head"><div><div class="eyebrow">What changed</div><h2>The growth story</h2></div></div>
+      <div class="story-grid">
+        <article><span>01</span><h3>Consistency built the base</h3><p>Daily publishing created enough surface area to learn quickly. The first 14 posts established a dependable baseline before the breakout.</p></article>
+        <article><span>02</span><h3>A repeatable hook emerged</h3><p>Posts 15–17 reached 9.7K, 34K and 16K views. Three strong results in sequence point to a format worth repeating, not a single lucky spike.</p></article>
+        <article><span>03</span><h3>Reach is still compounding</h3><p>The account generated 74.8K daily video views from July 9 to August 4, with daily activity remaining in the thousands after the peak.</p></article>
+      </div>
+    </section>
+
+    <section class="videos section" id="videos">
+      <div class="section-head">
+        <div><div class="eyebrow">Content library</div><h2>Every post, from day one</h2></div>
+        <div class="controls" role="group" aria-label="Sort posts">
+          <button class="active" data-sort="recent">Recent</button><button data-sort="top">Top viewed</button><button data-sort="oldest">Day one</button>
         </div>
-        <div class="chart-wrap" id="chartDailyComments"></div>
-        <p class="trend-caption">Comments were near zero through week one, now landing consistently, 4 on Jul 20, 3 on Jul 23, 4 on Jul 24, 2 on Jul 25. Two-way engagement is holding, not just spiking once.</p>
       </div>
-    </div>
-    <div class="table-wrap" style="margin-top:16px;">
-      <table id="dailyTable">
-        <thead>
-          <tr><th>Date</th><th>Views</th><th>Profile visits</th><th>Likes</th><th>Comments</th><th>Shares</th></tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </section>
+      <div class="video-list" id="videoList"></div>
+    </section>
+  </main>
 
-  <section class="videos" id="videos">
-    <h2>Video by video</h2>
-    <div class="video-list" id="videoList"></div>
-  </section>
-
-</main>
-
-<footer class="foot">
-  Maintained by Shabbir. This page updates as new data comes in, no need to ask for a new report, just check back here.
-</footer>
-
-<script src="js/data.js"></script>
-<script src="js/charts.js"></script>
-<script src="js/main.js"></script>
+  <footer class="foot"><strong>Ankett S Kedia · TikTok growth report</strong><span>Post metrics captured August 6, 2026 · Daily analytics through August 4</span></footer>
+  <script src="js/data.js"></script><script src="js/charts.js"></script><script src="js/main.js"></script>
 </body>
 </html>

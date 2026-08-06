@@ -1,84 +1,40 @@
-document.getElementById("updatedDate").textContent = REPORT.updated;
+const number = value => value.toLocaleString("en-US");
+const totals = REPORT.videos.reduce((a,v) => ({views:a.views+v.views,likes:a.likes+v.likes,comments:a.comments+v.comments}), {views:0,likes:0,comments:0});
+const averageViews = Math.round(totals.views / REPORT.videos.length);
+const interactionRate = ((totals.likes + totals.comments) / totals.views * 100).toFixed(1) + "%";
 
-// ---------- KPI strip ----------
-const kpiGrid = document.getElementById("kpiGrid");
-REPORT.kpis.forEach(k => {
-  const div = document.createElement("div");
-  div.className = "kpi";
-  div.innerHTML = `<div class="kpi-label">${k.label}</div><div class="kpi-value${k.neutral ? " neutral" : ""}">${k.value}</div>`;
-  kpiGrid.appendChild(div);
+document.getElementById("updatedDate").textContent = REPORT.updated;
+document.getElementById("heroNote").textContent = `${REPORT.videos.length} videos have generated ${number(totals.views)} views. The account moved from a sub-1,000-view baseline to consecutive breakout posts, while new uploads continue to build the content library.`;
+
+[
+  ["Posts published", number(REPORT.videos.length), "28 posts in 29 days"],
+  ["Total post views", number(totals.views), "Current snapshot"],
+  ["Total likes", number(totals.likes), "Across all posts"],
+  ["Comments", number(totals.comments), "Audience responses"],
+  ["Avg. views / post", number(averageViews), "Includes breakout reach"],
+  ["Interaction rate", interactionRate, "Likes + comments ÷ views"]
+].forEach(([label,value,note]) => {
+  const el=document.createElement("div");el.className="kpi";
+  el.innerHTML=`<div class="kpi-label">${label}</div><div class="kpi-value">${value}</div><div class="kpi-note">${note}</div>`;
+  document.getElementById("kpiGrid").appendChild(el);
 });
 
-// ---------- trend cards ----------
-renderLineChart(
-  document.getElementById("chartWatchTime"),
-  REPORT.viewsTrend.map((v, i) => ({ x: `Post ${i + 1}`, y: v })),
-  { width: 460, height: 110, unit: "", ariaLabel: "Views by post" }
-);
-renderLineChart(
-  document.getElementById("chartFullWatch"),
-  REPORT.likesTrend.map((v, i) => ({ x: `Post ${i + 1}`, y: v })),
-  { width: 460, height: 110, unit: "", ariaLabel: "Likes by post" }
-);
+renderLineChart(document.getElementById("chartDailyViews"), REPORT.daily.map(d=>({x:`D${d.day}`,label:`Day ${d.day} · ${d.date}`,y:d.views})), {width:1050,height:210,labels:8,ariaLabel:"Daily TikTok video views from day 1 to day 27"});
+renderLineChart(document.getElementById("chartPostViews"), REPORT.videos.map(v=>({x:`P${v.id}`,label:`Post ${v.id} · ${v.date}`,y:v.views})), {width:520,height:150,ariaLabel:"Views for each of 28 TikTok posts"});
+renderLineChart(document.getElementById("chartPostLikes"), REPORT.videos.map(v=>({x:`P${v.id}`,label:`Post ${v.id} · ${v.date}`,y:v.likes})), {width:520,height:150,ariaLabel:"Likes for each of 28 TikTok posts"});
 
-// ---------- daily performance ----------
-if (REPORT.dailyPerf) {
-  renderLineChart(
-    document.getElementById("chartDailyViews"),
-    REPORT.dailyPerf.map(d => ({ x: d.date, y: d.views })),
-    { width: 460, height: 110, unit: "", ariaLabel: "Views per day" }
-  );
-  renderLineChart(
-    document.getElementById("chartDailyComments"),
-    REPORT.dailyPerf.map(d => ({ x: d.date, y: d.comments })),
-    { width: 460, height: 110, unit: "", ariaLabel: "Comments per day" }
-  );
-
-  const dailyBody = document.querySelector("#dailyTable tbody");
-  REPORT.dailyPerf.forEach(d => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${d.date}</td>
-      <td>${d.views}</td>
-      <td>${d.profileViews ?? "&ndash;"}</td>
-      <td>${d.likes}</td>
-      <td>${d.comments}</td>
-      <td>${d.shares}</td>
-    `;
-    dailyBody.appendChild(tr);
+const list=document.getElementById("videoList");
+function renderVideos(sort="recent"){
+  const items=[...REPORT.videos];
+  if(sort==="recent") items.reverse();
+  if(sort==="top") items.sort((a,b)=>b.views-a.views);
+  list.innerHTML="";
+  items.forEach(v=>{
+    const top=v.views>=9000?'<span class="rank">Breakout</span>':v.views>=2000?'<span class="rank">Top performer</span>':'';
+    const el=document.createElement("article");el.className="video-card";
+    el.innerHTML=`<div class="post-no">${String(v.id).padStart(2,"0")}</div><div><div class="video-title">${v.title}${top}</div><div class="video-meta">Posted ${v.date}, 2026</div></div><div class="metric"><small>Views</small><strong>${number(v.views)}</strong></div><div class="metric"><small>Likes</small><strong>${number(v.likes)}</strong></div><div class="metric"><small>Comments</small><strong>${number(v.comments)}</strong></div>`;
+    list.appendChild(el);
   });
 }
-
-// ---------- video cards, highest views first ----------
-const videoList = document.getElementById("videoList");
-const statusLabel = { live: "Live", restricted: "Restricted", deleted: "Pulled" };
-const sortedVideos = [...REPORT.videos].sort((a, b) => b.views - a.views);
-sortedVideos.forEach(v => {
-  const card = document.createElement("div");
-  card.className = "video-card";
-
-  const statsHtml = v.status !== "deleted"
-    ? `<div class="stat-row">
-        <div><div class="stat-label">Views</div><div class="stat-value">${v.views}</div></div>
-        <div><div class="stat-label">Likes</div><div class="stat-value">${v.likes ?? "n/a"}</div></div>
-        <div><div class="stat-label">Comments</div><div class="stat-value">${v.comments ?? "n/a"}</div></div>
-        <div><div class="stat-label">Shares</div><div class="stat-value">${v.shares ?? "n/a"}</div></div>
-      </div>`
-    : `<div class="stat-row"><div><div class="stat-label">Views before restriction</div><div class="stat-value">${v.views}</div></div></div>`;
-
-  card.innerHTML = `
-    <div class="video-top">
-      <div>
-        <div class="video-title">${v.title}</div>
-        <div class="video-meta">${v.sub} &middot; Posted ${v.posted}</div>
-      </div>
-      <span class="status-badge ${v.status}"><span class="dot"></span>${statusLabel[v.status]}</span>
-    </div>
-    <div class="video-body">
-      ${statsHtml}
-    </div>
-  `;
-  videoList.appendChild(card);
-});
-
-
+renderVideos();
+document.querySelectorAll("[data-sort]").forEach(button=>button.addEventListener("click",()=>{document.querySelectorAll("[data-sort]").forEach(b=>b.classList.toggle("active",b===button));renderVideos(button.dataset.sort)}));
