@@ -1,88 +1,541 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f4efe5">
-  <title>Ankett S Kedia | TikTok Growth Report</title>
-  <meta name="description" content="TikTok growth and content performance report for Ankett S Kedia.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ankett S Kedia | TikTok Report</title>
+<meta name="description" content="TikTok performance report for Ankett S Kedia, maintained by Shabbir.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F1EADB;
+    --bg-deep:#E8DFCB;
+    --card:#FBF7EE;
+    --card-line:#E2D6BC;
+    --ink:#2B241C;
+    --ink-soft:#7A6E5C;
+    --ink-faint:#A69A85;
+    --rust:#B04B31;
+    --rust-soft:#E7C9BC;
+    --sage:#5F7355;
+    --sage-soft:#D9E0CE;
+    --ochre:#B9862F;
+    --ochre-soft:#EBDBB6;
+    --radius:14px;
+    --shadow: 0 1px 2px rgba(43,36,28,0.06), 0 8px 24px -12px rgba(43,36,28,0.18);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 500px at 15% -10%, #F6F0E1 0%, transparent 60%),
+      var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace; letter-spacing:0.02em;}
+  h1,h2,h3{font-family:'Fraunces', serif; margin:0; font-weight:600; letter-spacing:-0.01em;}
+  a{color:inherit;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+
+  header.top{
+    position:sticky; top:0; z-index:20;
+    background:rgba(241,234,219,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--card-line);
+  }
+  .top-inner{max-width:1080px; margin:0 auto; padding:14px 28px; display:flex; align-items:center; gap:20px;}
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand-mark{
+    width:38px; height:38px; border-radius:10px;
+    overflow:hidden;
+    box-shadow: var(--shadow);
+  }
+  .brand-mark img{width:100%; height:100%; object-fit:cover; display:block;}
+  .brand-text{line-height:1.15;}
+  .brand-name{font-family:'Fraunces', serif; font-weight:600; font-size:15.5px;}
+  .brand-sub{font-size:11.5px; color:var(--ink-soft);}
+  .top-nav{display:flex; gap:22px; margin-left:auto; font-size:13.5px;}
+  .top-nav a{text-decoration:none; color:var(--ink-soft); font-weight:500; transition:color .15s;}
+  .top-nav a:hover{color:var(--rust);}
+  .updated{font-size:11.5px; color:var(--ink-faint); white-space:nowrap;}
+  .updated span{color:var(--ink-soft); font-weight:600;}
+  @media (max-width:640px){ .top-nav{display:none;} }
+
+  .hero{padding:64px 0 40px;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:11.5px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--rust); font-weight:600; margin-bottom:18px;
+  }
+  .eyebrow::before{content:""; width:16px; height:1px; background:var(--rust);}
+  .hero h1{font-size:clamp(30px, 4.4vw, 46px); line-height:1.1; max-width:780px;}
+  .hero-note{font-size:16px; line-height:1.65; color:var(--ink-soft); max-width:660px; margin-top:20px;}
+  .hero-stats{display:flex; gap:40px; margin-top:36px; flex-wrap:wrap;}
+  .hero-stat .num{font-family:'Fraunces', serif; font-size:32px; font-weight:600; color:var(--ink);}
+  .hero-stat .lab{font-size:12px; color:var(--ink-soft); margin-top:2px;}
+
+  section{padding:44px 0;}
+  .section-head{display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:6px;}
+  .section-head h2{font-size:24px;}
+  .section-note{font-size:13.5px; color:var(--ink-soft); max-width:640px; margin-top:8px; line-height:1.55;}
+
+  .kpi-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:22px;}
+  .kpi{
+    background:var(--card); border:1px solid var(--card-line); border-radius:var(--radius);
+    padding:18px 18px 16px; box-shadow:var(--shadow);
+  }
+  .kpi .kpi-lab{font-size:11.5px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft); font-weight:600;}
+  .kpi .kpi-val{font-family:'Fraunces', serif; font-size:27px; font-weight:600; margin-top:8px;}
+  .kpi .kpi-delta{font-size:12px; margin-top:6px; color:var(--sage); font-weight:600;}
+  @media (max-width:900px){ .kpi-grid{grid-template-columns:repeat(2,1fr);} }
+
+  .top3-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:22px;}
+  .top3-card{
+    background:var(--card); border:1px solid var(--card-line); border-radius:var(--radius);
+    padding:20px; box-shadow:var(--shadow); position:relative; overflow:hidden;
+  }
+  .top3-card::before{
+    content:attr(data-rank); position:absolute; top:-14px; right:-6px;
+    font-family:'Fraunces', serif; font-weight:700; font-size:72px; color:var(--card-line); z-index:0; line-height:1;
+  }
+  .top3-inner{position:relative; z-index:1;}
+  .top3-date{font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color:var(--rust); font-weight:700;}
+  .top3-title{font-family:'Fraunces', serif; font-size:16.5px; font-weight:600; margin-top:8px; line-height:1.35; min-height:65px;}
+  .top3-views{font-family:'Fraunces', serif; font-size:26px; font-weight:600; margin-top:14px;}
+  .top3-views span{font-size:11px; text-transform:uppercase; letter-spacing:0.05em; color:var(--ink-soft); font-weight:600; font-family:'Inter',sans-serif; margin-left:6px;}
+  .top3-meta{display:flex; gap:16px; margin-top:10px; font-size:12.5px; color:var(--ink-soft);}
+  @media (max-width:820px){ .top3-grid{grid-template-columns:1fr;} }
+
+  .trend-row{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:22px;}
+  .trend-card{
+    background:var(--card); border:1px solid var(--card-line); border-radius:var(--radius);
+    padding:20px 20px 16px; box-shadow:var(--shadow);
+  }
+  .trend-card.full{grid-column:1 / -1;}
+  .trend-head{display:flex; align-items:center; justify-content:space-between;}
+  .trend-head h3{font-size:16px;}
+  .trend-tag{font-size:10.5px; text-transform:uppercase; letter-spacing:0.05em; font-weight:700; padding:4px 8px; border-radius:20px;}
+  .trend-tag.good{background:var(--sage-soft); color:#3E4C36;}
+  .chart-wrap{margin-top:14px; position:relative;}
+  .trend-caption{font-size:12.5px; color:var(--ink-soft); margin-top:12px; line-height:1.55;}
+  @media (max-width:820px){ .trend-row{grid-template-columns:1fr;} }
+
+  .chart-tip{
+    position:absolute; pointer-events:none; z-index:10; opacity:0; transition:opacity .08s;
+    background:var(--ink); color:#F6EEE0; padding:8px 11px; border-radius:9px;
+    font-size:12px; line-height:1.5; white-space:nowrap; transform:translate(-50%,-100%);
+    box-shadow:0 6px 18px rgba(0,0,0,0.25);
+  }
+  .chart-tip b{font-family:'IBM Plex Mono', monospace; font-size:13px;}
+  .chart-tip .tt-title{display:block; color:#D9CDB8; font-size:10.5px; margin-top:2px; max-width:220px; white-space:normal;}
+
+  .table-wrap{overflow-x:auto; border:1px solid var(--card-line); border-radius:var(--radius); background:var(--card); box-shadow:var(--shadow);}
+  table{width:100%; border-collapse:collapse; font-size:13px;}
+  thead th{
+    text-align:left; font-size:10.5px; text-transform:uppercase; letter-spacing:0.05em;
+    color:var(--ink-soft); padding:12px 16px; border-bottom:1px solid var(--card-line);
+    background:var(--bg-deep); position:sticky; top:0;
+  }
+  tbody td{padding:11px 16px; border-bottom:1px solid rgba(226,214,188,0.6); vertical-align:top;}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:rgba(176,75,49,0.05);}
+  td.date{white-space:nowrap; color:var(--ink-soft); font-family:'IBM Plex Mono', monospace; font-size:11.5px;}
+  td.title{max-width:360px; font-weight:500;}
+  td.num{font-family:'IBM Plex Mono', monospace; font-size:12.5px; white-space:nowrap;}
+  tr.hit td.num.views{color:var(--rust); font-weight:700;}
+  .rank-badge{
+    display:inline-block; font-size:10px; font-weight:700; padding:2px 7px; border-radius:20px;
+    background:var(--rust); color:#F6EEE0; margin-left:8px; vertical-align:middle;
+  }
+
+  footer.foot{
+    padding:36px 28px 60px; text-align:center; font-size:12px; color:var(--ink-faint);
+    border-top:1px solid var(--card-line); margin-top:20px;
+  }
+  footer.foot b{color:var(--ink-soft);}
+
+
+  .analysis-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:22px;}
+  .analysis-col{
+    background:var(--card); border:1px solid var(--card-line); border-radius:var(--radius);
+    padding:20px; box-shadow:var(--shadow); border-left:3px solid var(--sage);
+  }
+  .analysis-col.flags{border-left-color:var(--rust);}
+  .analysis-col h3{font-size:15px; margin-bottom:12px;}
+  .analysis-col ul{margin:0; padding-left:18px; font-size:13px; line-height:1.65; color:var(--ink-soft);}
+  .analysis-col li{margin-bottom:11px;}
+  .analysis-col li b{color:var(--ink); font-weight:600;}
+  .analysis-col li:last-child{margin-bottom:0;}
+  @media (max-width:820px){ .analysis-grid{grid-template-columns:1fr;} }
+
+  .weekly-note{font-size:12.5px; color:var(--ink-soft); margin-top:8px; line-height:1.55;}
+  table.weekly td, table.weekly th{padding:9px 14px;}
+  td.wow.up{color:var(--sage); font-weight:700;}
+  td.wow.down{color:var(--rust); font-weight:700;}
+
+  @media print{
+    header.top, .top-nav{display:none !important;}
+    body{background:#fff;}
+    .chart-tip{display:none !important;}
+    section{padding:18px 0;}
+    .wrap{max-width:100%;}
+  }
+</style>
 </head>
 <body>
-  <header class="top">
-    <div class="top-inner">
-      <a class="brand" href="#overview" aria-label="Go to report overview">
-        <span class="brand-mark">AK</span>
-        <span><strong>Ankett S Kedia</strong><small>TikTok growth report</small></span>
-      </a>
-      <nav class="top-nav" aria-label="Report navigation">
-        <a href="#overview">Overview</a><a href="#growth">Growth</a><a href="#videos">Content</a>
-      </nav>
-      <div class="updated"><span class="live-dot"></span>Updated <span id="updatedDate"></span></div>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <span class="brand-mark"><img src="data:image/jpeg;base64,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" alt="Ankett S Kedia"></span>
+      <div class="brand-text">
+        <div class="brand-name">Ankett S Kedia</div>
+        <div class="brand-sub">TikTok performance report</div>
+      </div>
     </div>
-  </header>
+    <nav class="top-nav">
+      <a href="#overview">Overview</a>
+      <a href="#highlights">Highlights</a>
+      <a href="#analysis">Analysis</a>
+      <a href="#trends">Trends</a>
+      <a href="#posts">Posts</a>
+    </nav>
+    <div class="updated">Updated <span id="updatedDate">August 7, 2026</span></div>
+  </div>
+</header>
 
-  <main>
-    <section class="hero" id="overview">
-      <div class="eyebrow">Performance snapshot · first 28 posts</div>
-      <div class="hero-grid">
-        <div>
-          <h1>Early consistency turned into <em>real reach.</em></h1>
-          <p id="heroNote" class="hero-note"></p>
+<main>
+
+  <section class="hero wrap" id="overview">
+    <div class="eyebrow">Month one, 28 posts</div>
+    <h1>Twenty eight posts in, and the account broke out.</h1>
+    <p class="hero-note">Since the first post on July 9, 28 videos have gone live, pulling <strong>82,119 total views</strong>. The first two weeks built a steady base in the low hundreds per post. Then, in one stretch from July 23 to 25, three posts broke out: <strong>9,744 views</strong>, <strong>35,000 views</strong>, and <strong>18,000 views</strong>, the three biggest posts on the account by a wide margin. Since then, the account has settled into a higher band, posts are averaging roughly <strong id="liftMultiplier">2.5x</strong> the pre-breakout baseline, though it hasn't held at breakout-tier numbers, and engagement (likes and comments together) has grown alongside reach. What hasn't moved as much: the account sits at <strong>56 followers</strong> against those 82K views. Full breakdown below.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">82,119</div><div class="lab">Total views</div></div>
+      <div class="hero-stat"><div class="num">1,233</div><div class="lab">Total likes</div></div>
+      <div class="hero-stat"><div class="num">202</div><div class="lab">Total shares</div></div>
+      <div class="hero-stat"><div class="num">56</div><div class="lab">Followers to date</div></div>
+      <div class="hero-stat"><div class="num">28</div><div class="lab">Posts live</div></div>
+    </div>
+  </section>
+
+  <section class="kpis wrap">
+    <div class="section-head"><h2>Account totals</h2></div>
+    <p class="section-note">Across all 28 posts, from July 9 through August 6.</p>
+    <div class="kpi-grid" id="kpiGrid"></div>
+  </section>
+
+  <section class="wrap" id="highlights">
+    <div class="section-head"><h2>The three breakout posts</h2></div>
+    <p class="section-note">All three landed within a three day window, July 23 to 25, and remain the account's top performers to date. Each names a person or story that was actively being talked about at the time, not just a well-known name in general. See the pattern check below.</p>
+    <div class="top3-grid" id="top3Grid"></div>
+  </section>
+
+  <section class="wrap" id="analysis">
+    <div class="section-head"><h2>What worked, what didn't</h2></div>
+    <p class="section-note">Checked against every post, not just the top three, so the pattern holds up if it's pushed on.</p>
+    <div class="analysis-grid">
+      <div class="analysis-col">
+        <h3>What worked</h3>
+        <ul>
+          <li><b>A live, currently-discussed story beat a famous name on its own.</b> All three breakouts referenced something people were already talking about that week: Anand Ambani's ice cream brand joke, Alia Bhatt's reported Samay Raina fee, an Ambani-adjacent school curiosity. They pulled 9,744 / 35,000 / 18,000 views against a 551-view median across the account.</li>
+          <li><b>Naming a public figure without a live-news angle still helped, just less.</b> Messi/Kohli/Dhoni (1,493), Harsh Beniwal (1,695), Kunal Shah (1,865) and Yuzvendra Chahal (997) all landed roughly 1.8x to 3.4x the median post, but none came close to breakout tier. A name is necessary but not sufficient. The "why is everyone talking about this right now" angle is what did the heavy lifting.</li>
+          <li><b>A sharp, specific number in the hook worked even with no name attached.</b> "16 lakh rupees. Not for a coach" (831) and "nobody talks about this privilege" (2,250) both beat the generic-advice baseline without naming anyone, on curiosity alone.</li>
+        </ul>
+      </div>
+      <div class="analysis-col flags">
+        <h3>What didn't, and open questions</h3>
+        <ul>
+          <li><b>Generic advice/aphorism posts plateaued hard.</b> Posts with no name and no specific hook, most of the first two weeks and most of weeks four and five, sit in a tight 170 to 750 view band regardless of which day they went up. That's the default outcome, not the exception.</li>
+          <li><b>View-to-follower conversion, not reach, is the real gap.</b> 82,119 views has produced 56 followers. Against the account's own goal of growing the account, that ratio matters more than the total-views number does, and nothing in the data suggests it's fixing itself on its own.</li>
+          <li><b>The three breakouts landed in one consecutive 3-day window, that's a confound, not just a pattern.</b> Some of the July 24 to 25 lift may be TikTok's algorithm rewarding the account after the July 23 post took off, separate from each video's own content. This data can't fully separate a content effect from a platform-push effect, so we're flagging it rather than claiming certainty either way.</li>
+          <li><b>The earlier paid-lead attempt over TikTok produced one lead that didn't convert.</b> Consistent with the account not yet having the reach or reputation for a cold ask. Supports holding the lead-gen CTA until the growth phase runs its course.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="trends">
+    <div class="section-head"><h2>Reach and engagement per post</h2></div>
+    <p class="section-note">Every video is a day, so this is also the day by day view. Hover any bar or point for the exact number.</p>
+    <div class="trend-row">
+      <div class="trend-card full">
+        <div class="trend-head">
+          <h3>Views per post</h3>
+          <span class="trend-tag good">Reach climbing</span>
         </div>
-        <aside class="hero-highlight" aria-label="Breakout result">
-          <span>Breakout post</span><strong>34K</strong><p>views on July 24, followed by another 16K-view post.</p>
-        </aside>
+        <div class="chart-wrap" id="chartViews"></div>
+        <p class="trend-caption">July 24 (35,000 views) and July 25 (18,000 views) sit far above the rest of the account, with July 23 (9,744 views) just before them. Posts since then are consistently higher than the pre breakout average.</p>
       </div>
-    </section>
-
-    <section class="kpis" aria-label="Key metrics"><div class="kpi-grid" id="kpiGrid"></div></section>
-
-    <section class="growth section" id="growth">
-      <div class="section-head">
-        <div><div class="eyebrow">Growth over time</div><h2>Momentum, day by day</h2></div>
-        <p>Daily account activity from the supplied TikTok export. Hover or tap a chart point for its exact value.</p>
+      <div class="trend-card">
+        <div class="trend-head">
+          <h3>Likes per post</h3>
+          <span class="trend-tag good">Improving</span>
+        </div>
+        <div class="chart-wrap" id="chartLikes"></div>
+        <p class="trend-caption">Likes followed the same pattern: 119, then 516, then 260 across July 23 to 25, compared to single and low double digits in the first two weeks.</p>
       </div>
-      <div class="chart-grid">
-        <article class="chart-card chart-card-wide">
-          <div class="chart-head"><div><h3>Daily video views</h3><p>July 9–August 4 · Day 1 to Day 27</p></div><span class="signal"><i></i>Momentum established</span></div>
-          <div class="chart-wrap chart-large" id="chartDailyViews"></div>
-        </article>
-        <article class="chart-card">
-          <div class="chart-head"><div><h3>Views by post</h3><p>All 28 published videos</p></div></div>
-          <div class="chart-wrap" id="chartPostViews"></div>
-        </article>
-        <article class="chart-card">
-          <div class="chart-head"><div><h3>Likes by post</h3><p>Engagement followed reach</p></div></div>
-          <div class="chart-wrap" id="chartPostLikes"></div>
-        </article>
+      <div class="trend-card">
+        <div class="trend-head">
+          <h3>Comments per post</h3>
+          <span class="trend-tag good">New signal</span>
+        </div>
+        <div class="chart-wrap" id="chartComments"></div>
+        <p class="trend-caption">Comments are still small in absolute terms, but they show up consistently now instead of sitting at zero, including 5 comments on the July 24 breakout post.</p>
       </div>
-    </section>
-
-    <section class="story section">
-      <div class="section-head"><div><div class="eyebrow">What changed</div><h2>The growth story</h2></div></div>
-      <div class="story-grid">
-        <article><span>01</span><h3>Consistency built the base</h3><p>Daily publishing created enough surface area to learn quickly. The first 14 posts established a dependable baseline before the breakout.</p></article>
-        <article><span>02</span><h3>A repeatable hook emerged</h3><p>Posts 15–17 reached 9.7K, 34K and 16K views. Three strong results in sequence point to a format worth repeating, not a single lucky spike.</p></article>
-        <article><span>03</span><h3>Reach is still compounding</h3><p>The account generated 74.8K daily video views from July 9 to August 4, with daily activity remaining in the thousands after the peak.</p></article>
-      </div>
-    </section>
-
-    <section class="videos section" id="videos">
-      <div class="section-head">
-        <div><div class="eyebrow">Content library</div><h2>Every post, from day one</h2></div>
-        <div class="controls" role="group" aria-label="Sort posts">
-          <button class="active" data-sort="recent">Recent</button><button data-sort="top">Top viewed</button><button data-sort="oldest">Day one</button>
+      <div class="trend-card full">
+        <div class="trend-head">
+          <h3>Weekly totals</h3>
+          <span class="trend-tag good">Week-over-week</span>
+        </div>
+        <p class="weekly-note">Grouped by every 7 posts, which splits cleanly into 4 groups across the 28 posts. Week 3 is the breakout window (posts 15 to 21).</p>
+        <div class="table-wrap" style="margin-top:12px;">
+          <table class="weekly">
+            <thead><tr><th>Period</th><th>Posts</th><th>Total views</th><th>Avg / post</th><th>Vs. prior period</th></tr></thead>
+            <tbody id="weeklyTable"></tbody>
+          </table>
         </div>
       </div>
-      <div class="video-list" id="videoList"></div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <footer class="foot"><strong>Ankett S Kedia · TikTok growth report</strong><span>Post metrics captured August 6, 2026 · Daily analytics through August 4</span></footer>
-  <script src="js/data.js"></script><script src="js/charts.js"></script><script src="js/main.js"></script>
+  <section class="wrap" id="posts">
+    <div class="section-head"><h2>Every post, in order</h2></div>
+    <p class="section-note">All 28 posts from July 9 to August 6, with the caption, views, likes, and comments for each. Top three by views are flagged.</p>
+    <div class="table-wrap" style="margin-top:16px;">
+      <table id="postsTable">
+        <thead>
+          <tr><th>Date</th><th>Caption</th><th>Views</th><th>Likes</th><th>Comments</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  Maintained by <b>Shabbir</b>. This page updates as new data comes in, no need to ask for a new report, just check back here.
+</footer>
+
+<script>
+const DATA = [{"date":"Jul 9","title":"Most people make decisions with their gut and call it instinct","views":751,"likes":19,"comments":0},{"date":"Jul 10","title":"Gen Z didn't get handed a playbook. My generation had one","views":176,"likes":9,"comments":1},{"date":"Jul 11","title":"Everyone wants to build the exciting business, not the boring one","views":169,"likes":7,"comments":1},{"date":"Jul 12","title":"A pricing mistake turned into a luxury strategy","views":177,"likes":10,"comments":0},{"date":"Jul 13","title":"Skip this if you don't have an older sibling","views":184,"likes":5,"comments":0},{"date":"Jul 14","title":"Nobody talks about this privilege, and it has nothing to do with money","views":2250,"likes":4,"comments":2},{"date":"Jul 15","title":"You will never see a billionaire's kid at a cricket academy or a dance class","views":544,"likes":23,"comments":1},{"date":"Jul 16","title":"People say Elon Musk succeeded because his father was rich","views":535,"likes":15,"comments":0},{"date":"Jul 17","title":"Run clubs are not a fitness trend. They are the new dating apps","views":508,"likes":11,"comments":0},{"date":"Jul 18","title":"16 lakh rupees. Not for a coach. Not for equipment","views":831,"likes":22,"comments":2},{"date":"Jul 19","title":"Rich families add children to grow the empire","views":496,"likes":6,"comments":0},{"date":"Jul 20","title":"11 lakh engineers. Zero products. One very old explanation. Infosys","views":486,"likes":8,"comments":5},{"date":"Jul 21","title":"Messi's left foot is insured for more than Virat Kohli and MS Dhoni combined","views":1493,"likes":23,"comments":0},{"date":"Jul 22","title":"Harsh Beniwal spent years building a fanbase as the ultimate desi creator","views":1695,"likes":19,"comments":0},{"date":"Jul 23","title":"Everyone jokes about Anand Ambani launching an ice cream brand","views":9744,"likes":119,"comments":3},{"date":"Jul 24","title":"Alia Bhatt reportedly got paid 30 lakhs to appear on Samay Raina's show","views":35000,"likes":516,"comments":5},{"date":"Jul 25","title":"India's most exclusive school isn't owned by the Ambanis","views":18000,"likes":260,"comments":3},{"date":"Jul 27","title":"A lot of what feels like control from your parents was never really control","views":530,"likes":12,"comments":0},{"date":"Jul 28","title":"Luxury was never really about the price tag. It is about scarcity","views":635,"likes":17,"comments":0},{"date":"Jul 28","title":"India's tax system deliberately sends more resources to states","views":2154,"likes":38,"comments":4},{"date":"Jul 29","title":"Kunal Shah just left Cred to become CEO of WhatsApp","views":1865,"likes":23,"comments":0},{"date":"Jul 30","title":"The biggest deals I closed in 20 years were almost never won in the room","views":558,"likes":11,"comments":0},{"date":"Jul 31","title":"Yuzvendra Chahal's IPL salary went up after his divorce","views":997,"likes":18,"comments":0},{"date":"Aug 1","title":"Creators spent years building real audiences on Instagram","views":273,"likes":5,"comments":1},{"date":"Aug 2","title":"People don't buy confidence because it's persuasive. They buy certainty","views":470,"likes":10,"comments":0},{"date":"Aug 4","title":"The biggest controversy at most major sporting events was never on the field","views":569,"likes":6,"comments":2},{"date":"Aug 4","title":"The best negotiators don't try to win every argument","views":532,"likes":11,"comments":0},{"date":"Aug 6","title":"Some of the world's most influential companies don't put their name on the product","views":497,"likes":6,"comments":0}];
+
+const TOTAL_SHARES = 202;
+const sum = key => DATA.reduce((a,r)=>a+r[key],0);
+const fmt = n => n.toLocaleString('en-US');
+
+const totals = { views: sum('views'), likes: sum('likes'), comments: sum('comments'), shares: TOTAL_SHARES };
+const engagementRate = ((totals.likes + totals.comments + totals.shares) / totals.views * 100).toFixed(2);
+const avgViews = Math.round(totals.views / DATA.length);
+
+const byViews = [...DATA].map((r,i)=>({...r, idx:i})).sort((a,b)=>b.views-a.views);
+const top3 = byViews.slice(0,3);
+
+// ---- KPI cards ----
+const kpis = [
+  {lab:'Total views', val: fmt(totals.views), delta:'across 28 posts'},
+  {lab:'Total likes', val: fmt(totals.likes), delta:`${engagementRate}% engagement rate`},
+  {lab:'Total shares', val: fmt(totals.shares), delta:'off platform reach'},
+  {lab:'Total comments', val: fmt(totals.comments), delta:'two way engagement'},
+  {lab:'Avg. views / post', val: fmt(avgViews), delta:'across the full month'},
+  {lab:'Best post', val: fmt(top3[0].views), delta: top3[0].date + ' post'},
+  {lab:'2nd best post', val: fmt(top3[1].views), delta: top3[1].date + ' post'},
+  {lab:'3rd best post', val: fmt(top3[2].views), delta: top3[2].date + ' post'},
+];
+document.getElementById('kpiGrid').innerHTML = kpis.map(k => `
+  <div class="kpi">
+    <div class="kpi-lab">${k.lab}</div>
+    <div class="kpi-val">${k.val}</div>
+    <div class="kpi-delta">${k.delta}</div>
+  </div>`).join('');
+
+// ---- Top 3 cards ----
+document.getElementById('top3Grid').innerHTML = top3.map((r,i) => `
+  <div class="top3-card" data-rank="${i+1}">
+    <div class="top3-inner">
+      <div class="top3-date">Rank ${i+1} &middot; ${r.date}</div>
+      <div class="top3-title">${r.title}</div>
+      <div class="top3-views">${fmt(r.views)}<span>views</span></div>
+      <div class="top3-meta">
+        <span>${fmt(r.likes)} likes</span>
+        <span>${fmt(r.comments)} comments</span>
+      </div>
+    </div>
+  </div>`).join('');
+
+// ---- Interactive chart builder ----
+function buildChart(container, key, color, mode){
+  const W = 640, H = 190, padL = 8, padR = 8, padT = 12, padB = 22;
+  const innerW = W - padL - padR, innerH = H - padT - padB;
+  const max = Math.max(...DATA.map(d=>d[key]), 1);
+  const n = DATA.length;
+  const colW = innerW / n;
+
+  const svgNS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(svgNS,'svg');
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.style.width = '100%';
+  svg.style.height = 'auto';
+  svg.style.display = 'block';
+  svg.style.overflow = 'visible';
+
+  const baseline = document.createElementNS(svgNS,'line');
+  baseline.setAttribute('x1', padL); baseline.setAttribute('x2', W-padR);
+  baseline.setAttribute('y1', H-padB); baseline.setAttribute('y2', H-padB);
+  baseline.setAttribute('stroke', 'var(--card-line)'); baseline.setAttribute('stroke-width','1');
+  svg.appendChild(baseline);
+
+  if(mode === 'bar'){
+    DATA.forEach((d,i)=>{
+      const bh = Math.max((d[key]/max) * innerH, 2);
+      const x = padL + i*colW;
+      const y = H - padB - bh;
+      const rect = document.createElementNS(svgNS,'rect');
+      rect.setAttribute('x', (x+1).toFixed(1));
+      rect.setAttribute('y', y.toFixed(1));
+      rect.setAttribute('width', Math.max(colW-2,1).toFixed(1));
+      rect.setAttribute('height', bh.toFixed(1));
+      rect.setAttribute('rx', 2);
+      rect.setAttribute('fill', color);
+      rect.setAttribute('opacity', 0.55 + 0.45*(d[key]/max));
+      svg.appendChild(rect);
+    });
+  } else {
+    const pts = DATA.map((d,i)=>{
+      const x = padL + i*colW + colW/2;
+      const y = H - padB - (d[key]/max)*innerH;
+      return [x,y];
+    });
+    const path = pts.map((p,i)=>(i===0?'M':'L')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+    const area = path + ` L${pts[pts.length-1][0].toFixed(1)},${H-padB} L${pts[0][0].toFixed(1)},${H-padB} Z`;
+    const areaEl = document.createElementNS(svgNS,'path');
+    areaEl.setAttribute('d', area); areaEl.setAttribute('fill', color); areaEl.setAttribute('opacity','0.12');
+    svg.appendChild(areaEl);
+    const lineEl = document.createElementNS(svgNS,'path');
+    lineEl.setAttribute('d', path); lineEl.setAttribute('fill','none');
+    lineEl.setAttribute('stroke', color); lineEl.setAttribute('stroke-width','2');
+    svg.appendChild(lineEl);
+    pts.forEach((p)=>{
+      const c = document.createElementNS(svgNS,'circle');
+      c.setAttribute('cx', p[0].toFixed(1)); c.setAttribute('cy', p[1].toFixed(1));
+      c.setAttribute('r', 3); c.setAttribute('fill', color);
+      svg.appendChild(c);
+    });
+  }
+
+  // hover hit columns (invisible, full height, one per data point)
+  const hitEls = [];
+  DATA.forEach((d,i)=>{
+    const x = padL + i*colW;
+    const hit = document.createElementNS(svgNS,'rect');
+    hit.setAttribute('x', x.toFixed(1)); hit.setAttribute('y', 0);
+    hit.setAttribute('width', colW.toFixed(1)); hit.setAttribute('height', H);
+    hit.setAttribute('fill', 'transparent');
+    hit.style.cursor = 'pointer';
+    svg.appendChild(hit);
+    hitEls.push(hit);
+  });
+
+  container.innerHTML = '';
+  container.appendChild(svg);
+  const tip = document.createElement('div');
+  tip.className = 'chart-tip';
+  container.appendChild(tip);
+
+  let activeMark = null;
+  function highlight(i){
+    if(activeMark) activeMark.remove();
+    const x = padL + i*colW + colW/2;
+    const mark = document.createElementNS(svgNS,'line');
+    mark.setAttribute('x1', x.toFixed(1)); mark.setAttribute('x2', x.toFixed(1));
+    mark.setAttribute('y1', padT); mark.setAttribute('y2', H-padB);
+    mark.setAttribute('stroke', color); mark.setAttribute('stroke-width','1');
+    mark.setAttribute('stroke-dasharray','2,3'); mark.setAttribute('opacity','0.55');
+    svg.insertBefore(mark, svg.firstChild.nextSibling);
+    activeMark = mark;
+  }
+  function clearHighlight(){ if(activeMark){ activeMark.remove(); activeMark=null; } }
+
+  hitEls.forEach((hit,i)=>{
+    hit.addEventListener('mouseenter', () => {
+      const d = DATA[i];
+      tip.innerHTML = `<b>${fmt(d[key])}</b> ${key}<span class="tt-title">${d.date} &middot; ${d.title}</span>`;
+      tip.style.opacity = '1';
+      highlight(i);
+    });
+    hit.addEventListener('mousemove', e => {
+      const rect = container.getBoundingClientRect();
+      let x = e.clientX - rect.left;
+      let y = e.clientY - rect.top;
+      x = Math.min(Math.max(x, 60), rect.width - 60);
+      tip.style.left = x + 'px';
+      tip.style.top = Math.max(y - 10, 40) + 'px';
+    });
+    hit.addEventListener('mouseleave', () => {
+      tip.style.opacity = '0';
+      clearHighlight();
+    });
+  });
+}
+
+buildChart(document.getElementById('chartViews'), 'views', '#B04B31', 'line');
+buildChart(document.getElementById('chartLikes'), 'likes', '#B9862F', 'bar');
+buildChart(document.getElementById('chartComments'), 'comments', '#5F7355', 'bar');
+
+// ---- Weekly totals (chunks of 7 posts) ----
+const weeks = [];
+for (let i = 0; i < DATA.length; i += 7) weeks.push(DATA.slice(i, i + 7));
+const weekStats = weeks.map(w => ({
+  count: w.length,
+  total: w.reduce((a, r) => a + r.views, 0),
+  avg: w.reduce((a, r) => a + r.views, 0) / w.length,
+  from: w[0].date, to: w[w.length - 1].date,
+}));
+document.getElementById('weeklyTable').innerHTML = weekStats.map((w, i) => {
+  const prior = i > 0 ? weekStats[i - 1] : null;
+  const wow = prior ? ((w.avg - prior.avg) / prior.avg * 100) : null;
+  const wowCell = wow === null
+    ? '<span class="mono" style="color:var(--ink-faint);">n/a</span>'
+    : `<span class="mono ${wow >= 0 ? 'wow up' : 'wow down'}" style="color:${wow >= 0 ? 'var(--sage)' : 'var(--rust)'}; font-weight:700;">${wow >= 0 ? '+' : ''}${wow.toFixed(0)}% avg/post</span>`;
+  const partial = w.count < 6 && i === weekStats.length - 1 ? ' <span style="color:var(--ink-faint);">(partial)</span>' : '';
+  return `<tr>
+    <td>Week ${i + 1}${partial}<br><span style="color:var(--ink-faint); font-size:11px;">${w.from} to ${w.to}</span></td>
+    <td class="num">${w.count}</td>
+    <td class="num">${fmt(w.total)}</td>
+    <td class="num">${fmt(Math.round(w.avg))}</td>
+    <td>${wowCell}</td>
+  </tr>`;
+}).join('');
+
+// Pre/post breakout lift, shown in the hero note
+const breakoutIdx = 16; // Jul 25, last of the 3 breakout posts, 0-indexed
+const preBreakout = DATA.slice(0, 14); // Jul 9 - Jul 22, before the breakout window
+const preBreakoutNoOutlier = preBreakout.filter(d => d.views < 2000); // excludes the Jul 14 outlier
+const postBreakout = DATA.slice(breakoutIdx + 1); // everything after Jul 25
+const preAvg = preBreakoutNoOutlier.reduce((a, r) => a + r.views, 0) / preBreakoutNoOutlier.length;
+const postAvg = postBreakout.reduce((a, r) => a + r.views, 0) / postBreakout.length;
+const lift = (postAvg / preAvg).toFixed(1);
+document.getElementById('liftMultiplier').textContent = lift + 'x';
+
+// ---- Posts table ----
+document.querySelector('#postsTable tbody').innerHTML = DATA.map((r,i) => {
+  const rank = top3.findIndex(t=>t.idx===i);
+  const isTop = rank !== -1;
+  return `
+  <tr class="${isTop ? 'hit' : ''}">
+    <td class="date">${r.date}</td>
+    <td class="title">${r.title}${isTop ? `<span class="rank-badge">#${rank+1} by views</span>` : ''}</td>
+    <td class="num views">${fmt(r.views)}</td>
+    <td class="num">${fmt(r.likes)}</td>
+    <td class="num">${fmt(r.comments)}</td>
+  </tr>`;
+}).join('');
+</script>
 </body>
 </html>
