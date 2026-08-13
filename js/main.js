@@ -2,12 +2,13 @@ const number = value => value.toLocaleString("en-US");
 const totals = REPORT.videos.reduce((a,v) => ({views:a.views+v.views,likes:a.likes+v.likes,comments:a.comments+v.comments}), {views:0,likes:0,comments:0});
 const averageViews = Math.round(totals.views / REPORT.videos.length);
 const interactionRate = ((totals.likes + totals.comments) / totals.views * 100).toFixed(1) + "%";
+const spanDays = Math.round((new Date(`${REPORT.videos[REPORT.videos.length-1].date}, 2026`) - new Date(`${REPORT.videos[0].date}, 2026`)) / 86400000) + 1;
 
 document.getElementById("updatedDate").textContent = REPORT.updated;
 document.getElementById("heroNote").textContent = `${REPORT.videos.length} videos have generated ${number(totals.views)} views. The account moved from a sub-1,000-view baseline to consecutive breakout posts, while new uploads continue to build the content library.`;
 
 [
-  ["Posts published", number(REPORT.videos.length), "28 posts in 29 days"],
+  ["Posts published", number(REPORT.videos.length), `${REPORT.videos.length} posts in ${spanDays} days`],
   ["Total post views", number(totals.views), "Current snapshot"],
   ["Total likes", number(totals.likes), "Across all posts"],
   ["Comments", number(totals.comments), "Audience responses"],
