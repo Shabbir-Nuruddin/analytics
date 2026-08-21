@@ -185,6 +185,21 @@
     section{padding:18px 0;}
     .wrap{max-width:100%;}
   }
+
+  /* growth-since-last-check-in cards */
+  .growth-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:22px;}
+  .growth-card{
+    background:var(--card); border:1px solid var(--card-line); border-radius:var(--radius);
+    padding:18px; box-shadow:var(--shadow); position:relative;
+  }
+  .growth-lab{font-size:11.5px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft); font-weight:600;}
+  .growth-now{font-family:'Fraunces', serif; font-size:30px; font-weight:600; margin-top:10px; line-height:1;}
+  .growth-bar{height:5px; border-radius:3px; background:var(--bg-deep); margin-top:12px; overflow:hidden;}
+  .growth-bar span{display:block; height:100%; border-radius:3px; background:var(--sage);}
+  .growth-foot{display:flex; justify-content:space-between; align-items:baseline; margin-top:9px; gap:8px;}
+  .growth-delta{font-size:13px; font-weight:700; color:var(--sage);}
+  .growth-from{font-size:11.5px; color:var(--ink-faint);}
+  @media (max-width:900px){ .growth-grid{grid-template-columns:repeat(2,1fr);} }
 </style>
 </head>
 <body>
@@ -200,6 +215,7 @@
     </div>
     <nav class="top-nav">
       <a href="#overview">Overview</a>
+      <a href="#growth">Growth</a>
       <a href="#highlights">Highlights</a>
       <a href="#analysis">Analysis</a>
       <a href="#trends">Trends</a>
@@ -212,15 +228,30 @@
 <main>
 
   <section class="hero wrap" id="overview">
-    <div class="eyebrow">39 posts in, and a third breakout has landed</div>
-    <h1>Thirty nine posts in, and the breakout wasn't a one-off.</h1>
-    <p class="hero-note">Since the first post on July 9, 39 videos have gone live, pulling <strong>198,340 total views</strong>. Two things changed since the last check-in. The July breakout posts kept climbing long after they went up: the Ambani-school video is now at <strong>79,000 views</strong> and the Alia Bhatt video at <strong>47,000</strong>, roughly double what each showed a month ago. And the India's Got Latent post, logged at 3,067 views last time, has since run to <strong>30,000</strong>, making it the account's third breakout and the first to land outside the original July 23 to 25 window. Six new posts went up between August 14 and 19, landing between 482 and 4,590 views. And the number this report has flagged twice as stuck is no longer stuck: followers are at <strong>106</strong>, up from 62, growing almost exactly in step with reach. Full breakdown below.</p>
+    <div class="eyebrow">Six weeks in, every metric up</div>
+    <h1>Reach is compounding, and engagement is keeping pace.</h1>
+    <p class="hero-note">39 posts since July 9. Three breakouts. Every headline number is up more than 70% since the last check-in, and the follower count is now rising in step with reach rather than lagging it.</p>
     <div class="hero-stats">
       <div class="hero-stat"><div class="num">198,340</div><div class="lab">Total views</div></div>
       <div class="hero-stat"><div class="num">3,476</div><div class="lab">Total likes</div></div>
       <div class="hero-stat"><div class="num">310</div><div class="lab">Total shares</div></div>
-      <div class="hero-stat"><div class="num">106</div><div class="lab">Followers</div></div>
+      <div class="hero-stat"><div class="num">111</div><div class="lab">Followers</div></div>
       <div class="hero-stat"><div class="num">39</div><div class="lab">Posts live</div></div>
+    </div>
+  </section>
+
+
+  <section class="wrap" id="growth">
+    <div class="section-head"><h2>Growth since the last check-in</h2></div>
+    <p class="section-note">Six new posts, August 14 to 19. Comparison is against the 33-post report a month ago.</p>
+    <div class="growth-grid" id="growthGrid"></div>
+    <div class="trend-card full" style="margin-top:24px;">
+      <div class="trend-head">
+        <h3>Cumulative reach</h3>
+        <span class="trend-tag good">198,340 and climbing</span>
+      </div>
+      <div class="chart-wrap" id="chartCumulative"></div>
+      <p class="trend-caption">Total views across every post to date. The curve steepens rather than flattening, which is the shape you want.</p>
     </div>
   </section>
 
@@ -232,29 +263,29 @@
 
   <section class="wrap" id="highlights">
     <div class="section-head"><h2>The three breakout posts</h2></div>
-    <p class="section-note">Two of the three landed in the same three day window in late July. The third, the India's Got Latent post, went up on August 12 and built slowly over several weeks, which is the most useful change in this update. Each names a person or story that was actively being discussed at the time. See the pattern check below.</p>
+    <p class="section-note">Two landed in the same three-day window in late July. The third built slowly over three weeks, which is the useful change here.</p>
     <div class="top3-grid" id="top3Grid"></div>
   </section>
 
   <section class="wrap" id="analysis">
     <div class="section-head"><h2>What worked, what didn't</h2></div>
-    <p class="section-note">Checked against every post, not just the top three, so the pattern holds up if it's pushed on.</p>
+    <p class="section-note">Checked against all 39 posts, not just the top three.</p>
     <div class="analysis-grid">
       <div class="analysis-col">
         <h3>What worked</h3>
         <ul>
-          <li><b>A live, currently-discussed story beat a famous name on its own.</b> Every breakout referenced something people were already talking about that week: an Ambani-adjacent school curiosity (79,000), Alia Bhatt's reported Samay Raina fee (47,000), the India's Got Latent brand-deal angle (30,000) and Anand Ambani's ice cream joke (10,000). The median post on the account is still 588 views, so these are running 17x to 134x the middle of the account.</li>
-          <li><b>A name alone still helps, but the ceiling is lower.</b> Messi/Kohli/Dhoni (1,495), Harsh Beniwal (1,698), Kunal Shah (1,889) and Yuzvendra Chahal (1,001) all landed roughly 1.7x to 3.2x the median without ever reaching breakout tier. One correction from the last update belongs here: the India's Got Latent post was logged at 3,067 views and has since run to 30,000. Judging a post's ceiling within a few days of posting is not reliable on this account.</li>
-          <li><b>A sharp, specific claim worked with no name attached.</b> "16 lakh rupees. Not for a coach" (832) and "nobody talks about this privilege" (2,251) both beat the generic-advice baseline on curiosity alone. The strongest example is new: "Great salespeople don't use the same pitch for everyone" pulled 4,590 views and 129 likes on August 14, the best-performing post on the account that names nobody at all.</li>
+          <li><b>Live stories beat famous names.</b> All three breakouts referenced something people were already discussing that week. A name on its own caps out near 1,900 views.</li>
+          <li><b>A sharp claim needs no name at all.</b> "Great salespeople don't use the same pitch for everyone" hit 4,590 views with nobody famous in it.</li>
+          <li><b>Breakouts keep climbing for weeks.</b> The school post doubled to 79,000 a month after going up. Don't judge a video on its first 48 hours.</li>
         </ul>
       </div>
       <div class="analysis-col flags">
         <h3>What didn't, and open questions</h3>
         <ul>
-          <li><b>Generic advice posts still plateau, but the floor has risen and that is not all good news.</b> No-name, no-hook posts used to sit in a 170 to 750 view band. The newest batch landed higher, 2,114 and 2,049 views on August 14 and 15, but both drew exactly one like. More reach on a weak post is not the same as a better post, and these two are the clearest example of that on the account so far.</li>
-          <li><b>Follower growth is tracking reach, not lagging it.</b> Followers went from 62 to <b>106</b>, up 71%, while reach went from 115,026 to 198,340 views, up 72%. That reframes the gap this report flagged in the last two updates. Conversion is not deteriorating and it never was, it has been holding steady at roughly one follower per 1,900 views the whole time. The constraint is the ratio itself rather than a broken funnel, which makes the lever a stronger follow prompt in the videos, not more reach.</li>
-          <li><b>The one-window confound is now partly resolved.</b> The last update flagged that all three breakouts landing in a single 3-day stretch could have been a platform push rather than a content effect. The India's Got Latent post reaching 30,000 views from an August 12 upload, three weeks clear of that window, is evidence against the pure platform-push reading. It does not rule a push out entirely, but a repeatable content effect is now the better-supported explanation.</li>
-          <li><b>The earlier paid-lead attempt over TikTok produced one lead that didn't convert.</b> Consistent with the account not yet having the reach or reputation for a cold ask. Supports holding the lead-gen CTA until the growth phase runs its course.</li>
+          <li><b>Generic advice still plateaus.</b> The floor rose to roughly 2,000 views, but those posts draw almost no likes or comments. Higher reach, thinner engagement.</li>
+          <li><b>Follower conversion is flat, not broken.</b> Followers and reach both grew about 75%, holding steady near one follower per 1,800 views. The lever is a stronger follow prompt, not more reach.</li>
+          <li><b>The platform-push theory is mostly dead.</b> India's Got Latent broke out on August 12, three weeks outside the original window.</li>
+          <li><b>Paid lead-gen was premature.</b> One lead, no conversion. Hold the CTA until the growth phase runs out.</li>
         </ul>
       </div>
     </div>
@@ -262,7 +293,7 @@
 
   <section class="wrap" id="trends">
     <div class="section-head"><h2>Reach and engagement per post</h2></div>
-    <p class="section-note">Every video is a day, so this is also the day by day view. Hover any bar or point for the exact number.</p>
+    <p class="section-note">One post per day, so this doubles as the day-by-day view. Hover for exact numbers.</p>
     <div class="trend-row">
       <div class="trend-card full">
         <div class="trend-head">
@@ -270,7 +301,7 @@
           <span class="trend-tag good">Reach climbing</span>
         </div>
         <div class="chart-wrap" id="chartViews"></div>
-        <p class="trend-caption">The Ambani-school post (79,000 views) and the Alia Bhatt post (47,000) sit far above everything else, with India's Got Latent (30,000) now third and the Anand Ambani ice cream post (10,000) fourth. Worth noting when reading the right-hand side of this chart: all three breakouts kept climbing for weeks after they were posted, so the newest posts are not yet at their final numbers.</p>
+        <p class="trend-caption">Four posts carry most of the reach: 79,000, 47,000, 30,000 and 10,000.</p>
       </div>
       <div class="trend-card">
         <div class="trend-head">
@@ -278,7 +309,7 @@
           <span class="trend-tag good">Improving</span>
         </div>
         <div class="chart-wrap" id="chartLikes"></div>
-        <p class="trend-caption">Likes tracked reach: 1,459 on the school post, 701 on Alia Bhatt and 634 on India's Got Latent, against single and low double digits through the first two weeks. The exception worth watching is August 14 and 15, where two posts pulled around 2,000 views each and one like apiece.</p>
+        <p class="trend-caption">Likes track reach closely. The exception is August 14 and 15, where reach came without them.</p>
       </div>
       <div class="trend-card">
         <div class="trend-head">
@@ -286,14 +317,14 @@
           <span class="trend-tag good">New signal</span>
         </div>
         <div class="chart-wrap" id="chartComments"></div>
-        <p class="trend-caption">Comments are still small in absolute terms but they are now concentrated: the school post alone holds 62 of the account's 107 total comments, and it is the only post generating genuine back-and-forth rather than one-off replies.</p>
+        <p class="trend-caption">Concentrated rather than spread: the school post alone holds 62 of 107 total comments.</p>
       </div>
       <div class="trend-card full">
         <div class="trend-head">
           <h3>Weekly totals</h3>
           <span class="trend-tag good">Week-over-week</span>
         </div>
-        <p class="weekly-note">Grouped by every 7 posts, which splits into 6 groups across the 39 posts, the last one partial at 4 posts. Week 3 is the original breakout window (posts 15 to 21).</p>
+        <p class="weekly-note">Grouped in blocks of 7 posts. Block 3 is the original breakout window.</p>
         <div class="table-wrap" style="margin-top:12px;">
           <table class="weekly">
             <thead><tr><th>Period</th><th>Posts</th><th>Total views</th><th>Avg / post</th><th>Vs. prior period</th></tr></thead>
@@ -306,7 +337,7 @@
 
   <section class="wrap" id="posts">
     <div class="section-head"><h2>Every post, in order</h2></div>
-    <p class="section-note">All 39 posts from July 9 to August 19, with the caption, views, likes, and comments for each. Top three by views are flagged.</p>
+    <p class="section-note">All 39 posts, July 9 to August 19. Top three by views are flagged.</p>
     <div class="table-wrap" style="margin-top:16px;">
       <table id="postsTable">
         <thead>
@@ -521,7 +552,8 @@ const postBreakout = DATA.slice(breakoutIdx + 1); // everything after Jul 25
 const preAvg = preBreakoutNoOutlier.reduce((a, r) => a + r.views, 0) / preBreakoutNoOutlier.length;
 const postAvg = postBreakout.reduce((a, r) => a + r.views, 0) / postBreakout.length;
 const lift = (postAvg / preAvg).toFixed(1);
-document.getElementById('liftMultiplier').textContent = lift + 'x';
+const liftEl = document.getElementById('liftMultiplier');
+if (liftEl) liftEl.textContent = lift + 'x';
 
 // ---- Posts table ----
 document.querySelector('#postsTable tbody').innerHTML = DATA.map((r,i) => {
@@ -536,6 +568,58 @@ document.querySelector('#postsTable tbody').innerHTML = DATA.map((r,i) => {
     <td class="num">${fmt(r.comments)}</td>
   </tr>`;
 }).join('');
+
+// ---- growth vs the previous 33-post check-in ----
+const GROWTH = [
+  {lab:'Total views', from:115026, to:198340},
+  {lab:'Total likes', from:1790,   to:3476},
+  {lab:'Comments',    from:53,     to:107},
+  {lab:'Followers',   from:62,     to:111},
+];
+document.getElementById('growthGrid').innerHTML = GROWTH.map(g => {
+  const pct = Math.round((g.to - g.from) / g.from * 100);
+  return `<div class="growth-card">
+    <div class="growth-lab">${g.lab}</div>
+    <div class="growth-now">${fmt(g.to)}</div>
+    <div class="growth-bar"><span style="width:${Math.round(g.from / g.to * 100)}%"></span></div>
+    <div class="growth-foot"><span class="growth-delta">+${pct}%</span><span class="growth-from">was ${fmt(g.from)}</span></div>
+  </div>`;
+}).join('');
+
+// ---- cumulative reach curve ----
+function buildCumulative(container){
+  if(!container) return;
+  const W=640, H=200, padL=8, padR=8, padT=14, padB=24;
+  const innerW=W-padL-padR, innerH=H-padT-padB;
+  let run=0; const cum=DATA.map(d=>{ run+=d.views; return run; });
+  const max=cum[cum.length-1]||1;
+  const ns='http://www.w3.org/2000/svg';
+  const svg=document.createElementNS(ns,'svg');
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  svg.style.width='100%'; svg.style.height='auto'; svg.style.display='block'; svg.style.overflow='visible';
+  const base=document.createElementNS(ns,'line');
+  base.setAttribute('x1',padL); base.setAttribute('x2',W-padR);
+  base.setAttribute('y1',H-padB); base.setAttribute('y2',H-padB);
+  base.setAttribute('stroke','var(--card-line)'); base.setAttribute('stroke-width','1');
+  svg.appendChild(base);
+  const pts=cum.map((v,i)=>[ padL + (cum.length===1?innerW/2:i*(innerW/(cum.length-1))), H-padB-(v/max)*innerH ]);
+  const path=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+  const area=document.createElementNS(ns,'path');
+  area.setAttribute('d', path+` L${pts[pts.length-1][0].toFixed(1)},${H-padB} L${pts[0][0].toFixed(1)},${H-padB} Z`);
+  area.setAttribute('fill','#B04B31'); area.setAttribute('opacity','0.13');
+  svg.appendChild(area);
+  const line=document.createElementNS(ns,'path');
+  line.setAttribute('d',path); line.setAttribute('fill','none');
+  line.setAttribute('stroke','#B04B31'); line.setAttribute('stroke-width','2.5');
+  line.setAttribute('stroke-linejoin','round'); line.setAttribute('stroke-linecap','round');
+  svg.appendChild(line);
+  const end=document.createElementNS(ns,'circle');
+  end.setAttribute('cx',pts[pts.length-1][0].toFixed(1)); end.setAttribute('cy',pts[pts.length-1][1].toFixed(1));
+  end.setAttribute('r',4); end.setAttribute('fill','#B04B31');
+  svg.appendChild(end);
+  container.appendChild(svg);
+}
+buildCumulative(document.getElementById('chartCumulative'));
 </script>
 </body>
 </html>
