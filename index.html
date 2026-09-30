@@ -205,6 +205,37 @@
   .chart-legend{display:flex; gap:14px; align-items:center; margin-top:10px; flex-wrap:wrap;}
   .chart-legend span{display:inline-flex; align-items:center; gap:6px; font-size:11.5px; color:var(--ink-soft);}
   .chart-legend i{width:10px; height:10px; border-radius:3px; display:inline-block;}
+
+  /* ---- Sep 30 refresh additions ---- */
+  .growth-mult{font-size:13px; font-weight:700; color:var(--sage);}
+  .callout{
+    margin-top:28px; background:var(--ink); color:#F6EEE0; border-radius:var(--radius);
+    padding:22px 24px; display:grid; grid-template-columns:auto 1fr; gap:22px; align-items:center;
+  }
+  .callout .big{font-family:'Fraunces', serif; font-size:44px; font-weight:600; color:#EBDBB6; line-height:1;}
+  .callout .big small{display:block; font-family:'Inter',sans-serif; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:#D9CDB8; margin-top:8px; font-weight:600;}
+  .callout p{margin:0; font-size:14.5px; line-height:1.6; color:#E9DFCC;}
+  .callout p b{color:#fff;}
+  @media (max-width:640px){ .callout{grid-template-columns:1fr; gap:12px;} .callout .big{font-size:36px;} }
+
+  table.months td, table.months th{padding:10px 14px;}
+  table.months td.num{text-align:right;} table.months th.r{text-align:right;}
+  .month-bar{height:6px; border-radius:3px; background:var(--rust); margin-top:6px; min-width:2px;}
+
+  .sort-toggle{display:inline-flex; padding:3px; background:var(--bg-deep); border-radius:10px; gap:2px;}
+  .sort-toggle button{border:0; background:transparent; font:600 12px 'Inter',sans-serif; color:var(--ink-soft); padding:7px 12px; border-radius:8px; cursor:pointer;}
+  .sort-toggle button.active{background:var(--card); color:var(--ink); box-shadow:0 1px 3px rgba(43,36,28,0.12);}
+  .sort-toggle button:focus-visible{outline:2px solid var(--rust); outline-offset:2px;}
+  td.num.stale{color:var(--ink-faint);}
+  .stale-key{display:inline-block; width:22px; color:var(--ink-faint); font-family:'IBM Plex Mono',monospace;}
+  .tag-new{display:inline-block; font-size:10px; font-weight:700; padding:2px 7px; border-radius:20px; background:var(--sage-soft); color:#3E4C36; margin-left:8px; vertical-align:middle;}
+  .data-note{font-size:12px; color:var(--ink-soft); line-height:1.6; margin-top:12px;}
+  @media (max-width:640px){
+    .wrap{padding:0 16px;} .top-inner{padding:12px 16px;}
+    .hero{padding:40px 0 24px;} .hero-stats{gap:22px 28px;} .hero-stat .num{font-size:26px;}
+    .growth-grid{grid-template-columns:1fr 1fr; gap:10px;} .growth-now{font-size:24px;}
+    td.title{min-width:200px;}
+  }
 </style>
 </head>
 <body>
@@ -221,124 +252,129 @@
     <nav class="top-nav">
       <a href="#overview">Overview</a>
       <a href="#growth">Growth</a>
-      <a href="#highlights">Highlights</a>
+      <a href="#months">Months</a>
+      <a href="#highlights">Top posts</a>
       <a href="#analysis">Analysis</a>
       <a href="#trends">Trends</a>
       <a href="#posts">Posts</a>
     </nav>
-    <div class="updated">Updated <span id="updatedDate">August 21, 2026</span></div>
+    <div class="updated">Updated <span id="updatedDate">September 30, 2026</span></div>
   </div>
 </header>
 
 <main>
 
   <section class="hero wrap" id="overview">
-    <div class="eyebrow">Six weeks in, every metric up</div>
-    <h1>Reach is compounding, and engagement is keeping pace.</h1>
-    <p class="hero-note">39 posts since July 9. Three breakouts. Every headline number is up more than 70% since the last check-in, and the follower count is now rising in step with reach rather than lagging it.</p>
-    <div class="hero-stats">
-      <div class="hero-stat"><div class="num">198,340</div><div class="lab">Total views</div></div>
-      <div class="hero-stat"><div class="num">3,476</div><div class="lab">Total likes</div></div>
-      <div class="hero-stat"><div class="num">310</div><div class="lab">Total shares</div></div>
-      <div class="hero-stat"><div class="num">111</div><div class="lab">Followers</div></div>
-      <div class="hero-stat"><div class="num">39</div><div class="lab">Posts live</div></div>
-    </div>
+    <div class="eyebrow">Twelve weeks in &middot; data through Sep 28</div>
+    <h1>One post reached 382,000 people, and the account kept most of the lift.</h1>
+    <p class="hero-note">The Bigg Boss post on September 5 took the account past a million views. Followers are up from 111 to 745 since the last check-in, and daily reach has settled at about 2.5 times where it was before the spike.</p>
+    <div class="hero-stats" id="heroStats"></div>
   </section>
-
 
   <section class="wrap" id="growth">
     <div class="section-head"><h2>Growth since the last check-in</h2></div>
-    <p class="section-note">Six new posts, August 14 to 19. Comparison is against the 33-post report a month ago.</p>
+    <p class="section-note">August 21 to September 28. Account totals from TikTok's daily Overview export; followers from the profile.</p>
     <div class="growth-grid" id="growthGrid"></div>
+
     <div class="trend-card full" style="margin-top:24px;">
       <div class="trend-head">
-        <h3>Cumulative reach</h3>
-        <span class="trend-tag good">198,340 and climbing</span>
+        <h3>Daily video views</h3>
+        <span class="trend-tag good">Floor up 2.5&times;</span>
       </div>
-      <div class="chart-wrap" id="chartCumulative"></div>
-      <p class="trend-caption">Total views across every post to date. The curve steepens rather than flattening, which is the shape you want.</p>
+      <div class="chart-wrap" id="chartDaily"></div>
+      <p class="trend-caption">Every day from July 8. The September 5 and 6 spike is the Bigg Boss post; the useful part is what came after. The two weeks before the spike averaged 8,077 views a day, the nineteen days after it average 20,588.</p>
+    </div>
+
+    <div class="callout">
+      <div class="big">72%<small>of all-time views</small></div>
+      <p>came in <b>September alone</b>: 830,778 of 1,148,519. The account did more in the last four weeks than in the eight before it, and it is holding about <b>19,000 views a day</b>.</p>
     </div>
   </section>
 
-  <section class="kpis wrap">
-    <div class="section-head"><h2>Account totals</h2></div>
-    <p class="section-note">Across all 39 posts, from July 9 through August 19.</p>
-    <div class="kpi-grid" id="kpiGrid"></div>
+  <section class="wrap" id="months">
+    <div class="section-head"><h2>Month by month</h2></div>
+    <p class="section-note">July starts on the 8th, the first day with views. September runs to the 28th. Average per day is the fair comparison.</p>
+    <div class="table-wrap" style="margin-top:16px;">
+      <table class="months">
+        <thead><tr><th>Month</th><th class="r">Views</th><th class="r">Avg / day</th><th class="r">Likes</th><th class="r">Shares</th><th class="r">Profile views</th></tr></thead>
+        <tbody id="monthTable"></tbody>
+      </table>
+    </div>
   </section>
 
   <section class="wrap" id="highlights">
-    <div class="section-head"><h2>The three breakout posts</h2></div>
-    <p class="section-note">Two landed in the same three-day window in late July. The third built slowly over three weeks, which is the useful change here.</p>
+    <div class="section-head"><h2>The three biggest posts</h2></div>
+    <p class="section-note">All three are about Indian wealth, class or culture. The school post is two months old and has nearly doubled again since the last check-in.</p>
     <div class="top3-grid" id="top3Grid"></div>
   </section>
 
   <section class="wrap" id="analysis">
     <div class="section-head"><h2>What worked, what didn't</h2></div>
-    <p class="section-note">Checked against all 39 posts, not just the top three.</p>
+    <p class="section-note">Account numbers come from the daily export. Topic comparisons use the 28 posts since August 20, tagged by hand.</p>
     <div class="analysis-grid">
       <div class="analysis-col">
         <h3>What worked</h3>
         <ul>
-          <li><b>Live stories beat famous names.</b> All three breakouts referenced something people were already discussing that week. A name on its own caps out near 1,900 views.</li>
-          <li><b>A sharp claim needs no name at all.</b> "Great salespeople don't use the same pitch for everyone" hit 4,590 views with nobody famous in it.</li>
-          <li><b>Breakouts keep climbing for weeks.</b> The school post doubled to 79,000 a month after going up. Don't judge a video on its first 48 hours.</li>
+          <li><b>Shares carried the breakout.</b> September 5 and 6 brought 5,401 shares, 45% of every share the account has ever had. Likes followed reach; shares created it.</li>
+          <li><b>The lift held.</b> Daily views after the spike settled at 2.5&times; the pre-spike level, not back where they started.</li>
+          <li><b>Indian money and culture stories are the format.</b> The 14 posts on wealth, class and culture since August 20 have a median of 27,500 views, and 8 of them cleared 10,000. The 8 business case studies (Domino's, Crossword, the Kardashians) have a median of 1,840.</li>
+          <li><b>Breakouts are now routine.</b> 8 of September's 24 posts cleared 10,000 views. Before August 20 it was 4 out of 39.</li>
+          <li><b>Followers convert better.</b> One follower per 1,540 views, up from one per 2,100 on August 21.</li>
         </ul>
       </div>
       <div class="analysis-col flags">
         <h3>What didn't, and open questions</h3>
         <ul>
-          <li><b>Generic advice still plateaus.</b> Two August posts reached about 2,000 views with almost no likes or comments. Across all 39 posts the non-breakout median has only moved from 509 to 648, so the floor is up modestly, not transformed.</li>
-          <li><b>Follower conversion is flat, not broken.</b> Followers and reach both grew about 75%, holding steady near one follower per 1,800 views. The lever is a stronger follow prompt, not more reach.</li>
-          <li><b>The platform-push theory is mostly dead.</b> India's Got Latent broke out on August 12, three weeks outside the original window.</li>
-          <li><b>Paid lead-gen was premature.</b> One lead, no conversion. Hold the CTA until the growth phase runs out.</li>
+          <li><b>Pure sales advice still stalls near 500.</b> Chris Voss, the Ogilvy post, the sales technique post and the argument post have a median of 515 views, even with a much bigger audience now. The August 14 salespeople post (4,590) is still the only one that broke out.</li>
+          <li><b>This week is flat.</b> Last 7 days: 134,419 views against 135,894 the week before (&minus;1.1%). The account is holding, and the next step up needs another breakout.</li>
+          <li><b>Few conversations.</b> 420 comments on 1.15 million views, and the Bigg Boss post holds 191 of them. Ending on a question is the cheapest thing to test.</li>
+          <li><b>Gaps in the post list.</b> Posts from August 25 to September 2 were not in the latest screenshots, and older posts show August 21 numbers. Account totals are unaffected.</li>
         </ul>
       </div>
     </div>
   </section>
 
   <section class="wrap" id="trends">
-    <div class="section-head"><h2>Reach and engagement per post</h2></div>
-    <p class="section-note">One post per day, so this doubles as the day-by-day view. Hover for exact numbers.</p>
+    <div class="section-head"><h2>Trends</h2></div>
+    <p class="section-note">Hover or tap any chart for exact numbers.</p>
     <div class="trend-row">
+      <div class="trend-card">
+        <div class="trend-head">
+          <h3>Daily shares</h3>
+          <span class="trend-tag good">The growth engine</span>
+        </div>
+        <div class="chart-wrap" id="chartShares"></div>
+        <p class="trend-caption">Under 40 a day for most of August, then 2,714 on September 6. Since September 10 it has held around 150 a day, about ten times the August level.</p>
+      </div>
+      <div class="trend-card">
+        <div class="trend-head">
+          <h3>Daily likes</h3>
+          <span class="trend-tag good">Tracks reach</span>
+        </div>
+        <div class="chart-wrap" id="chartLikes"></div>
+        <p class="trend-caption">Likes move with views, running near 3% of daily views through September.</p>
+      </div>
+      <div class="trend-card full">
+        <div class="trend-head">
+          <h3>Weekly totals</h3>
+          <span class="trend-tag good">Week-over-week</span>
+        </div>
+        <p class="weekly-note">Seven-day blocks ending September 28, the same windows TikTok uses for its &ldquo;last 7 days&rdquo; figure. The first block is partial.</p>
+        <div class="chart-wrap" id="chartWeekly"></div>
+        <div class="table-wrap" style="margin-top:12px;">
+          <table class="weekly">
+            <thead><tr><th>Week</th><th>Days</th><th>Views</th><th>Avg / day</th><th>Vs. prior week</th></tr></thead>
+            <tbody id="weeklyTable"></tbody>
+          </table>
+        </div>
+      </div>
       <div class="trend-card full">
         <div class="trend-head">
           <h3>Views per post</h3>
-          <span class="trend-tag good">Reach climbing</span>
+          <span class="trend-tag good">In posting order</span>
         </div>
         <div class="chart-wrap" id="chartViews"></div>
-        <p class="trend-caption">Four posts carry most of the reach: 79,000, 47,000, 30,000 and 10,000.</p>
-      </div>
-      <div class="trend-card">
-        <div class="trend-head">
-          <h3>Trailing 5-post average views</h3>
-          <span class="trend-tag good">Underlying trend</span>
-        </div>
-        <div class="chart-wrap" id="chartRolling"></div>
-        <p class="trend-caption">Smooths out the spikes. The trailing average ends near 1,150 against roughly 500 through July, so the floor has about doubled, but the shape is still driven by the two breakout clusters rather than by steady growth.</p>
-      </div>
-      <div class="trend-card">
-        <div class="trend-head">
-          <h3>Engagement rate per post</h3>
-          <span class="trend-tag good">Quality check</span>
-        </div>
-        <div class="chart-wrap" id="chartEngRate"></div>
-        <p class="trend-caption">Likes plus comments as a share of that post's views. Independent of reach, so a small post can beat a breakout.</p>
-      </div>
-      <div class="trend-card">
-        <div class="trend-head">
-          <h3>Likes per post</h3>
-          <span class="trend-tag good">Improving</span>
-        </div>
-        <div class="chart-wrap" id="chartLikes"></div>
-        <p class="trend-caption">Likes track reach closely. The exception is August 14 and 15, where reach came without them.</p>
-      </div>
-      <div class="trend-card">
-        <div class="trend-head">
-          <h3>Comments per post</h3>
-          <span class="trend-tag good">New signal</span>
-        </div>
-        <div class="chart-wrap" id="chartComments"></div>
-        <p class="trend-caption">Concentrated rather than spread: the school post alone holds 62 of 107 total comments.</p>
+        <p class="trend-caption">Each bar is one post. The tall ones are almost all Indian wealth and culture stories.</p>
       </div>
       <div class="trend-card">
         <div class="trend-head">
@@ -346,7 +382,7 @@
           <span class="trend-tag good">Power law</span>
         </div>
         <div class="chart-wrap" id="chartDist"></div>
-        <p class="trend-caption">How many posts land in each view band. Most sit at the bottom, which is normal and is why the median matters more than the average.</p>
+        <p class="trend-caption">How many posts land in each view band. Most still sit under 2,500, which is normal and is why the median matters more than the average.</p>
       </div>
       <div class="trend-card">
         <div class="trend-head">
@@ -354,28 +390,28 @@
           <span class="trend-tag good">Timing</span>
         </div>
         <div class="chart-wrap" id="chartDow"></div>
-        <p class="trend-caption">Median, not average, on purpose. One 79,000 view post lands on a Saturday and drags the Saturday average to 13,803, while the actual Saturday median is 832. Sample sizes run 4 to 7 posts per day, so read this as a hint.</p>
+        <p class="trend-caption">Median per post, by the day it went up. About nine posts per day, so read this as a hint rather than a rule.</p>
       </div>
       <div class="trend-card full">
         <div class="trend-head">
-          <h3>Weekly totals</h3>
-          <span class="trend-tag good">Week-over-week</span>
+          <h3>Engagement rate per post</h3>
+          <span class="trend-tag good">Quality check</span>
         </div>
-        <p class="weekly-note">Grouped in blocks of 7 posts. Block 3 is the original breakout window.</p>
-        <div class="chart-wrap" id="chartWeekly"></div>
-        <div class="table-wrap" style="margin-top:12px;">
-          <table class="weekly">
-            <thead><tr><th>Period</th><th>Posts</th><th>Total views</th><th>Avg / post</th><th>Vs. prior period</th></tr></thead>
-            <tbody id="weeklyTable"></tbody>
-          </table>
-        </div>
+        <div class="chart-wrap" id="chartEngRate"></div>
+        <p class="trend-caption">Likes plus comments as a share of that post's views. Independent of reach, so a small post can beat a breakout.</p>
       </div>
     </div>
   </section>
 
   <section class="wrap" id="posts">
-    <div class="section-head"><h2>Every post, in order</h2></div>
-    <p class="section-note">All 39 posts, July 9 to August 19. Top three by views are flagged.</p>
+    <div class="section-head">
+      <h2>Every post</h2>
+      <div class="sort-toggle" role="group" aria-label="Sort posts">
+        <button type="button" data-sort="recent" class="active">Newest</button>
+        <button type="button" data-sort="top">Most viewed</button>
+      </div>
+    </div>
+    <p class="section-note" id="postsNote"></p>
     <div class="table-wrap" style="margin-top:16px;">
       <table id="postsTable">
         <thead>
@@ -384,6 +420,7 @@
         <tbody></tbody>
       </table>
     </div>
+    <p class="data-note"><span class="stale-key">123</span>Faded numbers were last captured August 21; those posts were not in the September 30 screenshots. TikTok rounds views above 10,000 to the nearest thousand.</p>
   </section>
 
 </main>
@@ -393,286 +430,74 @@
 </footer>
 
 <script>
-const DATA = [{"date":"Jul 9","title":"Most people make decisions with their gut and call it instinct","views":752,"likes":19,"comments":0},{"date":"Jul 10","title":"Gen Z didn't get handed a playbook. My generation had one","views":177,"likes":9,"comments":1},{"date":"Jul 11","title":"Everyone wants to build the exciting business, not the boring one","views":170,"likes":7,"comments":1},{"date":"Jul 12","title":"A pricing mistake turned into a luxury strategy","views":178,"likes":10,"comments":0},{"date":"Jul 13","title":"Skip this if you don't have an older sibling","views":185,"likes":5,"comments":0},{"date":"Jul 14","title":"Nobody talks about this privilege, and it has nothing to do with money","views":2251,"likes":4,"comments":2},{"date":"Jul 15","title":"You will never see a billionaire's kid at a cricket academy or a dance class","views":545,"likes":23,"comments":1},{"date":"Jul 16","title":"People say Elon Musk succeeded because his father was rich","views":536,"likes":15,"comments":0},{"date":"Jul 17","title":"Run clubs are not a fitness trend. They are the new dating apps","views":509,"likes":11,"comments":0},{"date":"Jul 18","title":"16 lakh rupees. Not for a coach. Not for equipment","views":832,"likes":22,"comments":2},{"date":"Jul 19","title":"Rich families add children to grow the empire","views":497,"likes":6,"comments":0},{"date":"Jul 20","title":"11 lakh engineers. Zero products. One very old explanation. Infosys","views":487,"likes":8,"comments":5},{"date":"Jul 21","title":"Messi's left foot is insured for more than Virat Kohli and MS Dhoni combined","views":1495,"likes":23,"comments":0},{"date":"Jul 22","title":"Harsh Beniwal spent years building a fanbase as the ultimate desi creator","views":1698,"likes":19,"comments":0},{"date":"Jul 23","title":"Everyone jokes about Anand Ambani launching an ice cream brand","views":10000,"likes":129,"comments":3},{"date":"Jul 24","title":"Alia Bhatt reportedly got paid 30 lakhs to appear on Samay Raina's show","views":47000,"likes":701,"comments":11},{"date":"Jul 25","title":"India's most exclusive school isn't owned by the Ambanis","views":79000,"likes":1459,"comments":62},{"date":"Jul 27","title":"A lot of what feels like control from your parents was never really control","views":534,"likes":12,"comments":0},{"date":"Jul 28","title":"Luxury was never really about the price tag. It is about scarcity","views":636,"likes":17,"comments":0},{"date":"Jul 28","title":"India's tax system deliberately sends more resources to states","views":2337,"likes":47,"comments":8},{"date":"Jul 29","title":"Kunal Shah just left Cred to become CEO of WhatsApp","views":1889,"likes":23,"comments":0},{"date":"Jul 30","title":"The biggest deals I closed in 20 years were almost never won in the room","views":560,"likes":11,"comments":0},{"date":"Jul 31","title":"Yuzvendra Chahal's IPL salary went up after his divorce","views":1001,"likes":18,"comments":0},{"date":"Aug 1","title":"Creators spent years building real audiences on Instagram","views":274,"likes":5,"comments":1},{"date":"Aug 2","title":"People don't buy confidence because it's persuasive. They buy certainty","views":471,"likes":10,"comments":0},{"date":"Aug 4","title":"The biggest controversy at most major sporting events was never on the field","views":588,"likes":6,"comments":3},{"date":"Aug 4","title":"The best negotiators don't try to win every argument","views":537,"likes":11,"comments":0},{"date":"Aug 6","title":"Some of the world's most influential companies don't put their name on the product","views":673,"likes":13,"comments":0},{"date":"Aug 8","title":"Some of the most fluent people you've met never touched a language course","views":495,"likes":7,"comments":0},{"date":"Aug 9","title":"Customers rarely buy features. They buy outcomes","views":663,"likes":8,"comments":1},{"date":"Aug 10","title":"Your brain hates unfinished tasks. That's why it's so easy to watch","views":648,"likes":10,"comments":0},{"date":"Aug 11","title":"If your parents own a fully paid off house, consider yourself rich","views":354,"likes":5,"comments":0},{"date":"Aug 12","title":"Every contestant on India's Got Latent walks off that stage into the same thing","views":30000,"likes":634,"comments":2},{"date":"Aug 14","title":"Great salespeople don't use the same pitch for everyone","views":4590,"likes":129,"comments":0},{"date":"Aug 14","title":"People don't make decisions based only on what they gain","views":2114,"likes":1,"comments":2},{"date":"Aug 15","title":"You'll never see a Mercedes with tinted glass and big aftermarket alloy wheels","views":2049,"likes":1,"comments":0},{"date":"Aug 17","title":"The brand with the most loyal customers on earth isn't Apple","views":581,"likes":11,"comments":0},{"date":"Aug 17","title":"The strongest negotiating position isn't the lowest price. It's being the hardest to replace","views":552,"likes":20,"comments":0},{"date":"Aug 19","title":"Titan's watch market share fell from fifty percent to twenty-seven","views":482,"likes":7,"comments":2}];
+/* ============ data ============ */
+// Per post: [date shown, sort order is array order, title, views, likes, comments, snapshot, approx date?]
+const DATA = [{"date": "Jul 9", "title": "Most people make decisions with their gut and call it instinct", "views": 752, "likes": 19, "comments": 0, "asOf": "Aug 21"}, {"date": "Jul 10", "title": "Gen Z didn't get handed a playbook. My generation had one", "views": 177, "likes": 9, "comments": 1, "asOf": "Aug 21"}, {"date": "Jul 11", "title": "Everyone wants to build the exciting business, not the boring one", "views": 170, "likes": 7, "comments": 1, "asOf": "Aug 21"}, {"date": "Jul 12", "title": "A pricing mistake turned into a luxury strategy", "views": 178, "likes": 10, "comments": 0, "asOf": "Aug 21"}, {"date": "Jul 13", "title": "Skip this if you don't have an older sibling", "views": 185, "likes": 5, "comments": 0, "asOf": "Aug 21"}, {"date": "Jul 14", "title": "Nobody talks about this privilege, and it has nothing to do with money", "views": 2251, "likes": 4, "comments": 2, "asOf": "Aug 21"}, {"date": "Jul 15", "title": "You will never see a billionaire's kid at a cricket academy or a dance class", "views": 545, "likes": 23, "comments": 1, "asOf": "Aug 21"}, {"date": "Jul 16", "title": "People say Elon Musk succeeded because his father was rich", "views": 536, "likes": 15, "comments": 0, "asOf": "Aug 21"}, {"date": "Jul 17", "title": "Run clubs are not a fitness trend. They are the new dating apps", "views": 509, "likes": 11, "comments": 0, "asOf": "Aug 21"}, {"date": "Jul 18", "title": "16 lakh rupees. Not for a coach. Not for equipment", "views": 832, "likes": 22, "comments": 2, "asOf": "Aug 21"}, {"date": "Jul 19", "title": "Rich families add children to grow the empire", "views": 497, "likes": 6, "comments": 0, "asOf": "Aug 21"}, {"date": "Jul 20", "title": "11 lakh engineers. Zero products. One very old explanation. Infosys", "views": 487, "likes": 8, "comments": 5, "asOf": "Aug 21"}, {"date": "Jul 21", "title": "Messi's left foot is insured for more than Virat Kohli and MS Dhoni combined", "views": 1495, "likes": 23, "comments": 0, "asOf": "Aug 21"}, {"date": "Jul 22", "title": "Harsh Beniwal spent years building a fanbase as the ultimate desi creator", "views": 1698, "likes": 19, "comments": 0, "asOf": "Aug 21"}, {"date": "Jul 23", "title": "Everyone jokes about Anand Ambani launching an ice cream brand", "views": 10000, "likes": 129, "comments": 3, "asOf": "Aug 21"}, {"date": "Jul 24", "title": "Alia Bhatt reportedly got paid 30 lakhs to appear on Samay Raina's show", "views": 67000, "likes": 1052, "comments": 9, "asOf": "Sep 30"}, {"date": "Jul 25", "title": "India's most exclusive school isn't owned by the Ambanis", "views": 154000, "likes": 3276, "comments": 99, "asOf": "Sep 30"}, {"date": "Jul 27", "title": "A lot of what feels like control from your parents was never really control", "views": 534, "likes": 12, "comments": 0, "asOf": "Aug 21"}, {"date": "Jul 28", "title": "Luxury was never really about the price tag. It is about scarcity", "views": 636, "likes": 17, "comments": 0, "asOf": "Aug 21"}, {"date": "Jul 28", "title": "India's tax system deliberately sends more resources to states", "views": 2337, "likes": 47, "comments": 8, "asOf": "Aug 21"}, {"date": "Jul 29", "title": "Kunal Shah just left Cred to become CEO of WhatsApp", "views": 1889, "likes": 23, "comments": 0, "asOf": "Aug 21"}, {"date": "Jul 30", "title": "The biggest deals I closed in 20 years were almost never won in the room", "views": 560, "likes": 11, "comments": 0, "asOf": "Aug 21"}, {"date": "Jul 31", "title": "Yuzvendra Chahal's IPL salary went up after his divorce", "views": 1001, "likes": 18, "comments": 0, "asOf": "Aug 21"}, {"date": "Aug 1", "title": "Creators spent years building real audiences on Instagram", "views": 274, "likes": 5, "comments": 1, "asOf": "Aug 21"}, {"date": "Aug 2", "title": "People don't buy confidence because it's persuasive. They buy certainty", "views": 471, "likes": 10, "comments": 0, "asOf": "Aug 21"}, {"date": "Aug 4", "title": "The biggest controversy at most major sporting events was never on the field", "views": 588, "likes": 6, "comments": 3, "asOf": "Aug 21"}, {"date": "Aug 4", "title": "The best negotiators don't try to win every argument", "views": 537, "likes": 11, "comments": 0, "asOf": "Aug 21"}, {"date": "Aug 6", "title": "Some of the world's most influential companies don't put their name on the product", "views": 673, "likes": 13, "comments": 0, "asOf": "Aug 21"}, {"date": "Aug 8", "title": "Some of the most fluent people you've met never touched a language course", "views": 495, "likes": 7, "comments": 0, "asOf": "Aug 21"}, {"date": "Aug 9", "title": "Customers rarely buy features. They buy outcomes", "views": 663, "likes": 8, "comments": 1, "asOf": "Aug 21"}, {"date": "Aug 10", "title": "Your brain hates unfinished tasks. That's why it's so easy to watch", "views": 648, "likes": 10, "comments": 0, "asOf": "Aug 21"}, {"date": "Aug 11", "title": "If your parents own a fully paid off house, consider yourself rich", "views": 354, "likes": 5, "comments": 0, "asOf": "Aug 21"}, {"date": "Aug 12", "title": "Every contestant on India's Got Latent walks off that stage into the same thing", "views": 30000, "likes": 634, "comments": 2, "asOf": "Aug 21"}, {"date": "Aug 14", "title": "Great salespeople don't use the same pitch for everyone", "views": 4590, "likes": 129, "comments": 0, "asOf": "Aug 21"}, {"date": "Aug 14", "title": "People don't make decisions based only on what they gain", "views": 2114, "likes": 1, "comments": 2, "asOf": "Aug 21"}, {"date": "Aug 15", "title": "You'll never see a Mercedes with tinted glass and big aftermarket alloy wheels", "views": 2049, "likes": 1, "comments": 0, "asOf": "Aug 21"}, {"date": "Aug 17", "title": "The brand with the most loyal customers on earth isn't Apple", "views": 581, "likes": 11, "comments": 0, "asOf": "Aug 21"}, {"date": "Aug 17", "title": "The strongest negotiating position isn't the lowest price. It's being the hardest to replace", "views": 587, "likes": 20, "comments": 0, "asOf": "Sep 30"}, {"date": "Aug 19", "title": "Titan's watch market share fell from fifty percent to twenty-seven", "views": 538, "likes": 8, "comments": 3, "asOf": "Sep 30"}, {"date": "Aug 20", "title": "India's most expensive property isn't Antilia, and nobody can buy …", "views": 57000, "likes": 687, "comments": 16, "asOf": "Sep 30", "isNew": true}, {"date": "Aug 22", "title": "Canva did not invent design software. Gymshark did not inve…", "views": 2593, "likes": 3, "comments": 0, "asOf": "Sep 30", "isNew": true}, {"date": "Aug 22", "title": "Two economists at MIT, Abhijit Banerjee and Esther Duflo…", "views": 3117, "likes": 0, "comments": 0, "asOf": "Sep 30", "isNew": true}, {"date": "Aug 24", "title": "Jains are roughly zero point four percent of India's population", "views": 2094, "likes": 1, "comments": 0, "asOf": "Sep 30", "isNew": true}, {"date": "Late Aug", "title": "Reliance is now worth more than the GDP of most countries", "views": 401, "likes": 6, "comments": 0, "asOf": "Sep 30", "isNew": true, "approx": true}, {"date": "Sep 3", "title": "This sales technique makes prospects more likely to say yes", "views": 500, "likes": 11, "comments": 0, "asOf": "Sep 30", "isNew": true}, {"date": "Sep 4", "title": "Political movements are often shaped by people who have…", "views": 624, "likes": 12, "comments": 2, "asOf": "Sep 30", "isNew": true}, {"date": "Sep 5", "title": "Bigg Boss, Lock Upp and Splitsvilla are not entertainment products", "views": 382000, "likes": 8177, "comments": 191, "asOf": "Sep 30", "isNew": true}, {"date": "Sep 6", "title": "The Ambanis will not sell Mumbai Indians at any number", "views": 1221, "likes": 20, "comments": 0, "asOf": "Sep 30", "isNew": true}, {"date": "Sep 6", "title": "India's most expensive dining experience was never at the Taj", "views": 36000, "likes": 559, "comments": 20, "asOf": "Sep 30", "isNew": true}, {"date": "Sep 6", "title": "David Ogilvy said nobody should be allowed to touch advertising…", "views": 253, "likes": 8, "comments": 0, "asOf": "Sep 30", "isNew": true}, {"date": "Sep 7", "title": "Crossword, one of India's largest bookstore chains, made around…", "views": 1086, "likes": 21, "comments": 0, "asOf": "Sep 30", "isNew": true}, {"date": "Sep 8", "title": "A Michelin star restaurant will charge you a hundred times more…", "views": 525, "likes": 11, "comments": 0, "asOf": "Sep 30", "isNew": true}, {"date": "Sep 8", "title": "There is a 60 acre private club in the middle of Mumbai", "views": 19000, "likes": 358, "comments": 1, "asOf": "Sep 30", "isNew": true}, {"date": "Sep 9", "title": "Chris Voss spent 24 years as the FBI's lead international kidnappin…", "views": 530, "likes": 4, "comments": 0, "asOf": "Sep 30", "isNew": true}, {"date": "Sep 11", "title": "Dubai's biggest advantage for global wealth may not be its tax…", "views": 1934, "likes": 31, "comments": 0, "asOf": "Sep 30", "isNew": true}, {"date": "Sep 12", "title": "Why are some of the world's richest economies concentrated i…", "views": 5530, "likes": 112, "comments": 11, "asOf": "Sep 30", "isNew": true}, {"date": "Sep 12", "title": "Most people think Domino's makes money by selling pizzas", "views": 3304, "likes": 45, "comments": 2, "asOf": "Sep 30", "isNew": true}, {"date": "Sep 13", "title": "Before 1930, America lived exactly like India does today", "views": 69000, "likes": 2576, "comments": 12, "asOf": "Sep 30", "isNew": true}, {"date": "Sep 14", "title": "In February 1937, Time magazine put a man from Hyderabad on its…", "views": 83, "likes": 2, "comments": 0, "asOf": "Sep 30", "isNew": true}, {"date": "Sep 15", "title": "There's a new financial market where investors can make money…", "views": 601, "likes": 17, "comments": 0, "asOf": "Sep 30", "isNew": true}, {"date": "Sep 16", "title": "Wealth is not just about how much money a family has", "views": 52000, "likes": 1528, "comments": 21, "asOf": "Sep 30", "isNew": true}, {"date": "Sep 17", "title": "The idea that family and business should never mix misses a bigger…", "views": 821, "likes": 23, "comments": 0, "asOf": "Sep 30", "isNew": true}, {"date": "Sep 18", "title": "Being wrong in an argument is not a sign of low intelligence", "views": 615, "likes": 16, "comments": 1, "asOf": "Sep 30", "isNew": true}, {"date": "Sep 18–20", "title": "Two people can earn similar purchasing power and still…", "views": 46000, "likes": 1711, "comments": 11, "asOf": "Sep 30", "isNew": true, "approx": true}, {"date": "Sep 20", "title": "The Kardashian business model is an interesting case study in how…", "views": 14000, "likes": 322, "comments": 3, "asOf": "Sep 30", "isNew": true}, {"date": "Sep 22", "title": "A classroom can teach children lessons that don't appear on a…", "views": 44000, "likes": 1346, "comments": 3, "asOf": "Sep 30", "isNew": true}, {"date": "Sep 27", "title": "India has one of the world's largest restaurant industries", "views": 3471, "likes": 44, "comments": 0, "asOf": "Sep 30", "isNew": true}];
 
-const TOTAL_SHARES = 310; // From the Jun 19 - Aug 17 TikTok Overview export
-const sum = key => DATA.reduce((a,r)=>a+r[key],0);
+// Daily account totals from TikTok's Overview export: [date, views, profile views, likes, comments, shares]
+const DAILY = [["Jul 8", 33, 0, 1, 0, 0], ["Jul 9", 716, 16, 21, 0, 2], ["Jul 10", 193, 13, 12, 1, 0], ["Jul 11", 181, 12, 9, 1, 0], ["Jul 12", 180, 8, 8, 0, 1], ["Jul 13", 182, 7, 2, 1, 0], ["Jul 14", 220, 2, 8, 0, 2], ["Jul 15", 521, 3, 29, 0, 1], ["Jul 16", 522, 7, 9, 0, 0], ["Jul 17", 2566, 7, 14, 0, 3], ["Jul 18", 850, 8, 30, 0, 4], ["Jul 19", 472, 3, 3, 4, 2], ["Jul 20", 494, 7, 7, 4, 0], ["Jul 21", 999, 6, 19, 0, 1], ["Jul 22", 527, 4, 4, 0, 0], ["Jul 23", 1853, 8, 29, 0, 2], ["Jul 24", 5806, 19, 88, 5, 3], ["Jul 25", 10508, 22, 173, 2, 5], ["Jul 26", 9337, 16, 148, 3, 7], ["Jul 27", 5127, 18, 73, 1, 7], ["Jul 28", 4980, 19, 84, 0, 1], ["Jul 29", 5349, 12, 72, 3, 4], ["Jul 30", 4293, 8, 53, 3, 2], ["Jul 31", 2689, 9, 45, 0, 5], ["Aug 1", 3228, 10, 53, 1, 1], ["Aug 2", 3354, 7, 37, 0, 1], ["Aug 3", 4655, 8, 80, 1, 7], ["Aug 4", 4999, 17, 129, 3, 0], ["Aug 5", 5883, 7, 100, 1, 8], ["Aug 6", 5505, 16, 79, 1, 4], ["Aug 7", 5171, 11, 85, 0, 8], ["Aug 8", 5615, 25, 97, 2, 6], ["Aug 9", 4772, 13, 69, 0, 8], ["Aug 10", 5791, 20, 107, 5, 13], ["Aug 11", 7527, 23, 110, 0, 7], ["Aug 12", 5684, 26, 96, 2, 8], ["Aug 13", 14929, 45, 342, 2, 21], ["Aug 14", 17988, 37, 397, 5, 36], ["Aug 15", 22094, 83, 444, 14, 61], ["Aug 16", 18034, 57, 381, 19, 47], ["Aug 17", 9480, 24, 225, 6, 22], ["Aug 18", 6582, 18, 134, 1, 9], ["Aug 19", 4617, 15, 99, 7, 4], ["Aug 20", 7984, 23, 120, 2, 3], ["Aug 21", 10702, 31, 133, 4, 29], ["Aug 22", 6708, 26, 89, 1, 8], ["Aug 23", 10447, 20, 141, 4, 7], ["Aug 24", 16889, 33, 108, 2, 9], ["Aug 25", 7330, 24, 104, 2, 17], ["Aug 26", 5680, 19, 90, 0, 6], ["Aug 27", 7876, 15, 129, 2, 7], ["Aug 28", 6086, 16, 108, 1, 9], ["Aug 29", 7814, 25, 165, 1, 10], ["Aug 30", 8235, 23, 191, 1, 17], ["Aug 31", 7484, 33, 184, 0, 36], ["Sep 1", 5875, 20, 152, 1, 16], ["Sep 2", 5984, 14, 138, 2, 13], ["Sep 3", 5337, 14, 113, 1, 6], ["Sep 4", 11336, 25, 201, 12, 36], ["Sep 5", 120698, 220, 2386, 52, 2687], ["Sep 6", 125984, 298, 2799, 53, 2714], ["Sep 7", 64128, 126, 1296, 26, 1179], ["Sep 8", 30735, 70, 721, 21, 634], ["Sep 9", 69538, 135, 1511, 20, 1478], ["Sep 10", 24422, 54, 551, 7, 436], ["Sep 11", 16449, 50, 380, 6, 212], ["Sep 12", 19189, 45, 385, 8, 152], ["Sep 13", 28797, 75, 784, 7, 168], ["Sep 14", 31993, 78, 1085, 5, 184], ["Sep 15", 15177, 42, 411, 5, 86], ["Sep 16", 13237, 33, 352, 6, 83], ["Sep 17", 35277, 129, 985, 29, 313], ["Sep 18", 13972, 54, 373, 4, 134], ["Sep 19", 27530, 95, 799, 8, 177], ["Sep 20", 19541, 63, 568, 6, 107], ["Sep 21", 11160, 32, 272, 4, 98], ["Sep 22", 16398, 50, 478, 0, 69], ["Sep 23", 32089, 103, 1020, 5, 99], ["Sep 24", 14688, 44, 415, 3, 73], ["Sep 25", 15051, 43, 443, 7, 93], ["Sep 26", 13017, 50, 380, 2, 102], ["Sep 27", 21653, 77, 650, 1, 130], ["Sep 28", 21523, 82, 772, 1, 150]].map(function(d){
+  return {date:d[0], views:d[1], profileViews:d[2], likes:d[3], comments:d[4], shares:d[5]};
+});
+
+const FOLLOWERS = {was:111, now:745};
+const CHECKIN = 'Aug 21';
+
 const fmt = n => n.toLocaleString('en-US');
+const PALETTE = { rust:'#B04B31', gold:'#D19A16', green:'#3F7F35' };
+const MONTHS={Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
+const MONTH_NAMES=['January','February','March','April','May','June','July','August','September','October','November','December'];
+function parseDate(s){ const p=s.split(' '); return new Date(2026, MONTHS[p[0]], +p[1]); }
+const DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
-const totals = { views: sum('views'), likes: sum('likes'), comments: sum('comments'), shares: TOTAL_SHARES };
-const engagementRate = ((totals.likes + totals.comments + totals.shares) / totals.views * 100).toFixed(2);
-const avgViews = Math.round(totals.views / DATA.length);
+function sumDaily(rows, key){ return rows.reduce(function(a,r){ return a+r[key]; },0); }
+const upTo = function(date){ const i=DAILY.findIndex(function(d){return d.date===date;}); return DAILY.slice(0,i+1); };
+const ALL = {views:sumDaily(DAILY,'views'), likes:sumDaily(DAILY,'likes'), comments:sumDaily(DAILY,'comments'), shares:sumDaily(DAILY,'shares'), profileViews:sumDaily(DAILY,'profileViews')};
+const BEFORE = upTo(CHECKIN);
+const THEN = {views:sumDaily(BEFORE,'views'), likes:sumDaily(BEFORE,'likes'), shares:sumDaily(BEFORE,'shares')};
 
-const byViews = [...DATA].map((r,i)=>({...r, idx:i})).sort((a,b)=>b.views-a.views);
-const top3 = byViews.slice(0,3);
-
-// ---- KPI cards ----
-const kpis = [
-  {lab:'Total views', val: fmt(totals.views), delta:`across ${DATA.length} posts`},
-  {lab:'Total likes', val: fmt(totals.likes), delta:`${engagementRate}% engagement rate`},
-  {lab:'Total shares', val: fmt(totals.shares), delta:'off platform reach'},
-  {lab:'Total comments', val: fmt(totals.comments), delta:'two way engagement'},
-  {lab:'Avg. views / post', val: fmt(avgViews), delta:'across the full month'},
-  {lab:'Best post', val: fmt(top3[0].views), delta: top3[0].date + ' post'},
-  {lab:'2nd best post', val: fmt(top3[1].views), delta: top3[1].date + ' post'},
-  {lab:'3rd best post', val: fmt(top3[2].views), delta: top3[2].date + ' post'},
-];
-document.getElementById('kpiGrid').innerHTML = kpis.map(k => `
-  <div class="kpi">
-    <div class="kpi-lab">${k.lab}</div>
-    <div class="kpi-val">${k.val}</div>
-    <div class="kpi-delta">${k.delta}</div>
-  </div>`).join('');
-
-// ---- Top 3 cards ----
-document.getElementById('top3Grid').innerHTML = top3.map((r,i) => `
-  <div class="top3-card" data-rank="${i+1}">
-    <div class="top3-inner">
-      <div class="top3-date">Rank ${i+1} &middot; ${r.date}</div>
-      <div class="top3-title">${r.title}</div>
-      <div class="top3-views">${fmt(r.views)}<span>views</span></div>
-      <div class="top3-meta">
-        <span>${fmt(r.likes)} likes</span>
-        <span>${fmt(r.comments)} comments</span>
-      </div>
-    </div>
-  </div>`).join('');
-
-// ---- Interactive chart builder ----
-function buildChart(container, key, color, mode){
-  const W = 640, H = 190, padL = 8, padR = 8, padT = 12, padB = 22;
-  const innerW = W - padL - padR, innerH = H - padT - padB;
-  const max = Math.max(...DATA.map(d=>d[key]), 1);
-  const n = DATA.length;
-  const colW = innerW / n;
-
-  const svgNS = 'http://www.w3.org/2000/svg';
-  const svg = document.createElementNS(svgNS,'svg');
-  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
-  svg.style.width = '100%';
-  svg.style.height = 'auto';
-  svg.style.display = 'block';
-  svg.style.overflow = 'visible';
-
-  const baseline = document.createElementNS(svgNS,'line');
-  baseline.setAttribute('x1', padL); baseline.setAttribute('x2', W-padR);
-  baseline.setAttribute('y1', H-padB); baseline.setAttribute('y2', H-padB);
-  baseline.setAttribute('stroke', 'var(--card-line)'); baseline.setAttribute('stroke-width','1');
-  svg.appendChild(baseline);
-
-  if(mode === 'bar'){
-    DATA.forEach((d,i)=>{
-      const bh = Math.max((d[key]/max) * innerH, 2);
-      const x = padL + i*colW;
-      const y = H - padB - bh;
-      const rect = document.createElementNS(svgNS,'rect');
-      rect.setAttribute('x', (x+1).toFixed(1));
-      rect.setAttribute('y', y.toFixed(1));
-      rect.setAttribute('width', Math.max(colW-2,1).toFixed(1));
-      rect.setAttribute('height', bh.toFixed(1));
-      rect.setAttribute('rx', 2);
-      rect.setAttribute('fill', color);
-      rect.setAttribute('opacity', 0.55 + 0.45*(d[key]/max));
-      svg.appendChild(rect);
-    });
-  } else {
-    const pts = DATA.map((d,i)=>{
-      const x = padL + i*colW + colW/2;
-      const y = H - padB - (d[key]/max)*innerH;
-      return [x,y];
-    });
-    const path = pts.map((p,i)=>(i===0?'M':'L')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
-    const area = path + ` L${pts[pts.length-1][0].toFixed(1)},${H-padB} L${pts[0][0].toFixed(1)},${H-padB} Z`;
-    const areaEl = document.createElementNS(svgNS,'path');
-    areaEl.setAttribute('d', area); areaEl.setAttribute('fill', color); areaEl.setAttribute('opacity','0.12');
-    svg.appendChild(areaEl);
-    const lineEl = document.createElementNS(svgNS,'path');
-    lineEl.setAttribute('d', path); lineEl.setAttribute('fill','none');
-    lineEl.setAttribute('stroke', color); lineEl.setAttribute('stroke-width','2');
-    svg.appendChild(lineEl);
-    pts.forEach((p)=>{
-      const c = document.createElementNS(svgNS,'circle');
-      c.setAttribute('cx', p[0].toFixed(1)); c.setAttribute('cy', p[1].toFixed(1));
-      c.setAttribute('r', 3); c.setAttribute('fill', color);
-      svg.appendChild(c);
-    });
-  }
-
-  // hover hit columns (invisible, full height, one per data point)
-  const hitEls = [];
-  DATA.forEach((d,i)=>{
-    const x = padL + i*colW;
-    const hit = document.createElementNS(svgNS,'rect');
-    hit.setAttribute('x', x.toFixed(1)); hit.setAttribute('y', 0);
-    hit.setAttribute('width', colW.toFixed(1)); hit.setAttribute('height', H);
-    hit.setAttribute('fill', 'transparent');
-    hit.style.cursor = 'pointer';
-    svg.appendChild(hit);
-    hitEls.push(hit);
-  });
-
-  container.innerHTML = '';
-  container.appendChild(svg);
-  const tip = document.createElement('div');
-  tip.className = 'chart-tip';
-  container.appendChild(tip);
-
-  let activeMark = null;
-  function highlight(i){
-    if(activeMark) activeMark.remove();
-    const x = padL + i*colW + colW/2;
-    const mark = document.createElementNS(svgNS,'line');
-    mark.setAttribute('x1', x.toFixed(1)); mark.setAttribute('x2', x.toFixed(1));
-    mark.setAttribute('y1', padT); mark.setAttribute('y2', H-padB);
-    mark.setAttribute('stroke', color); mark.setAttribute('stroke-width','1');
-    mark.setAttribute('stroke-dasharray','2,3'); mark.setAttribute('opacity','0.55');
-    svg.insertBefore(mark, svg.firstChild.nextSibling);
-    activeMark = mark;
-  }
-  function clearHighlight(){ if(activeMark){ activeMark.remove(); activeMark=null; } }
-
-  hitEls.forEach((hit,i)=>{
-    hit.addEventListener('mouseenter', () => {
-      const d = DATA[i];
-      tip.innerHTML = `<b>${fmt(d[key])}</b> ${key}<span class="tt-title">${d.date} &middot; ${d.title}</span>`;
-      tip.style.opacity = '1';
-      highlight(i);
-    });
-    hit.addEventListener('mousemove', e => {
-      const rect = container.getBoundingClientRect();
-      let x = e.clientX - rect.left;
-      let y = e.clientY - rect.top;
-      x = Math.min(Math.max(x, 60), rect.width - 60);
-      tip.style.left = x + 'px';
-      tip.style.top = Math.max(y - 10, 40) + 'px';
-    });
-    hit.addEventListener('mouseleave', () => {
-      tip.style.opacity = '0';
-      clearHighlight();
-    });
-  });
-}
-
-buildChart(document.getElementById('chartViews'), 'views', '#B04B31', 'line');
-buildChart(document.getElementById('chartLikes'), 'likes', '#B9862F', 'bar');
-buildChart(document.getElementById('chartComments'), 'comments', '#5F7355', 'bar');
-
-// ---- Weekly totals (chunks of 7 posts) ----
-const weeks = [];
-for (let i = 0; i < DATA.length; i += 7) weeks.push(DATA.slice(i, i + 7));
-const weekStats = weeks.map(w => ({
-  count: w.length,
-  total: w.reduce((a, r) => a + r.views, 0),
-  avg: w.reduce((a, r) => a + r.views, 0) / w.length,
-  from: w[0].date, to: w[w.length - 1].date,
-}));
-document.getElementById('weeklyTable').innerHTML = weekStats.map((w, i) => {
-  const prior = i > 0 ? weekStats[i - 1] : null;
-  const wow = prior ? ((w.avg - prior.avg) / prior.avg * 100) : null;
-  const wowCell = wow === null
-    ? '<span class="mono" style="color:var(--ink-faint);">n/a</span>'
-    : `<span class="mono ${wow >= 0 ? 'wow up' : 'wow down'}" style="color:${wow >= 0 ? 'var(--sage)' : 'var(--rust)'}; font-weight:700;">${wow >= 0 ? '+' : ''}${wow.toFixed(0)}% avg/post</span>`;
-  const partial = w.count < 6 && i === weekStats.length - 1 ? ' <span style="color:var(--ink-faint);">(partial)</span>' : '';
-  return `<tr>
-    <td>Week ${i + 1}${partial}<br><span style="color:var(--ink-faint); font-size:11px;">${w.from} to ${w.to}</span></td>
-    <td class="num">${w.count}</td>
-    <td class="num">${fmt(w.total)}</td>
-    <td class="num">${fmt(Math.round(w.avg))}</td>
-    <td>${wowCell}</td>
-  </tr>`;
-}).join('');
-
-// Pre/post breakout lift, shown in the hero note
-const breakoutIdx = 16; // Jul 25, last of the 3 breakout posts, 0-indexed
-const preBreakout = DATA.slice(0, 14); // Jul 9 - Jul 22, before the breakout window
-const preBreakoutNoOutlier = preBreakout.filter(d => d.views < 2000); // excludes the Jul 14 outlier
-const postBreakout = DATA.slice(breakoutIdx + 1); // everything after Jul 25
-const preAvg = preBreakoutNoOutlier.reduce((a, r) => a + r.views, 0) / preBreakoutNoOutlier.length;
-const postAvg = postBreakout.reduce((a, r) => a + r.views, 0) / postBreakout.length;
-const lift = (postAvg / preAvg).toFixed(1);
-const liftEl = document.getElementById('liftMultiplier');
-if (liftEl) liftEl.textContent = lift + 'x';
-
-// ---- Posts table ----
-document.querySelector('#postsTable tbody').innerHTML = DATA.map((r,i) => {
-  const rank = top3.findIndex(t=>t.idx===i);
-  const isTop = rank !== -1;
-  return `
-  <tr class="${isTop ? 'hit' : ''}">
-    <td class="date">${r.date}</td>
-    <td class="title">${r.title}${isTop ? `<span class="rank-badge">#${rank+1} by views</span>` : ''}</td>
-    <td class="num views">${fmt(r.views)}</td>
-    <td class="num">${fmt(r.likes)}</td>
-    <td class="num">${fmt(r.comments)}</td>
-  </tr>`;
-}).join('');
-
-// ---- growth vs the previous 33-post check-in ----
-const GROWTH = [
-  {lab:'Total views', from:115026, to:198340},
-  {lab:'Total likes', from:1790,   to:3476},
-  {lab:'Comments',    from:53,     to:107},
-  {lab:'Followers',   from:62,     to:111},
-];
-document.getElementById('growthGrid').innerHTML = GROWTH.map((g, i) => {
-  const pct = Math.round((g.to - g.from) / g.from * 100);
-  return `<div class="growth-card">
-    <div class="growth-lab">${g.lab}</div>
-    <div class="growth-now">${fmt(g.to)}</div>
-    <div class="growth-spark" id="spark${i}"></div>
-    <div class="growth-foot"><span class="growth-delta">+${pct}%</span><span class="growth-from">was ${fmt(g.from)}</span></div>
-  </div>`;
-}).join('');
-
-// ---- cumulative reach curve ----
-function buildCumulative(container){
-  if(!container) return;
-  const W=640, H=200, padL=8, padR=8, padT=14, padB=24;
-  const innerW=W-padL-padR, innerH=H-padT-padB;
-  let run=0; const cum=DATA.map(d=>{ run+=d.views; return run; });
-  const max=cum[cum.length-1]||1;
-  const ns='http://www.w3.org/2000/svg';
-  const svg=document.createElementNS(ns,'svg');
-  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
-  svg.style.width='100%'; svg.style.height='auto'; svg.style.display='block'; svg.style.overflow='visible';
-  const base=document.createElementNS(ns,'line');
-  base.setAttribute('x1',padL); base.setAttribute('x2',W-padR);
-  base.setAttribute('y1',H-padB); base.setAttribute('y2',H-padB);
-  base.setAttribute('stroke','var(--card-line)'); base.setAttribute('stroke-width','1');
-  svg.appendChild(base);
-  const pts=cum.map((v,i)=>[ padL + (cum.length===1?innerW/2:i*(innerW/(cum.length-1))), H-padB-(v/max)*innerH ]);
-  const path=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
-  const area=document.createElementNS(ns,'path');
-  area.setAttribute('d', path+` L${pts[pts.length-1][0].toFixed(1)},${H-padB} L${pts[0][0].toFixed(1)},${H-padB} Z`);
-  area.setAttribute('fill','#B04B31'); area.setAttribute('opacity','0.13');
-  svg.appendChild(area);
-  const line=document.createElementNS(ns,'path');
-  line.setAttribute('d',path); line.setAttribute('fill','none');
-  line.setAttribute('stroke','#B04B31'); line.setAttribute('stroke-width','2.5');
-  line.setAttribute('stroke-linejoin','round'); line.setAttribute('stroke-linecap','round');
-  svg.appendChild(line);
-  const end=document.createElementNS(ns,'circle');
-  end.setAttribute('cx',pts[pts.length-1][0].toFixed(1)); end.setAttribute('cy',pts[pts.length-1][1].toFixed(1));
-  end.setAttribute('r',4); end.setAttribute('fill','#B04B31');
-  svg.appendChild(end);
-  container.appendChild(svg);
-}
-buildCumulative(document.getElementById('chartCumulative'));
+/* ============ hero ============ */
+document.getElementById('heroStats').innerHTML = [
+  [fmt(ALL.views),'Total views'],
+  [fmt(FOLLOWERS.now),'Followers'],
+  [fmt(ALL.likes),'Total likes'],
+  [fmt(ALL.shares),'Total shares'],
+  [DATA.length+'+','Posts live']
+].map(function(s){ return '<div class="hero-stat"><div class="num">'+s[0]+'</div><div class="lab">'+s[1]+'</div></div>'; }).join('');
 
 /* ============ generic chart engine (bar / line / area + hover) ============ */
-const PALETTE = { rust:'#B04B31', gold:'#D19A16', green:'#3F7F35' };
+function niceStep(x){ const p=Math.pow(10,Math.floor(Math.log10(x))); const f=x/p; return (f<=1?1:f<=2?2:f<=2.5?2.5:f<=5?5:10)*p; }
+function shortNum(v){ return v>=1000000? (v/1000000).toFixed(v%1000000?1:0)+'M' : v>=1000? (v/1000)+'K' : String(v); }
 
 function buildSeries(container, points, opts){
   if(!container || !points.length) return;
   const o = Object.assign({mode:'bar', color:PALETTE.rust, H:180, unit:'', decimals:0}, opts);
-  const W=640, padL=8, padR=8, padT=14, padB=o.axis?30:20, H=o.H;
+  const W=640, padL=8, padR=o.ticks?40:8, padT=o.annotate?30:14, padB=o.axis?30:20, H=o.H;
   const innerW=W-padL-padR, innerH=H-padT-padB;
-  const max = Math.max(...points.map(p=>p.value), 0) || 1;
+  let max = Math.max.apply(null, points.map(function(p){return p.value;}).concat([0])) || 1;
+  let step = 0;
+  if(o.ticks){ step = niceStep(max/3); max = Math.ceil(max/step)*step; }
   const n = points.length, colW = innerW/n;
   const ns='http://www.w3.org/2000/svg';
   const svg=document.createElementNS(ns,'svg');
   svg.setAttribute('viewBox','0 0 '+W+' '+H);
+  svg.setAttribute('role','img');
+  if(o.aria) svg.setAttribute('aria-label',o.aria);
   svg.style.width='100%'; svg.style.height='auto'; svg.style.display='block'; svg.style.overflow='visible';
+
+  if(o.ticks){
+    for(let v=step; v<=max+0.5; v+=step){
+      const y=H-padB-(v/max)*innerH;
+      const g=document.createElementNS(ns,'line');
+      g.setAttribute('x1',padL); g.setAttribute('x2',W-padR);
+      g.setAttribute('y1',y.toFixed(1)); g.setAttribute('y2',y.toFixed(1));
+      g.setAttribute('stroke','var(--card-line)'); g.setAttribute('stroke-width','1'); g.setAttribute('stroke-dasharray','2,4');
+      svg.appendChild(g);
+      const t=document.createElementNS(ns,'text');
+      t.setAttribute('x',W-padR+6); t.setAttribute('y',(y+3.5).toFixed(1));
+      t.setAttribute('fill','var(--ink-faint)'); t.setAttribute('font-size','10.5');
+      t.textContent=shortNum(v); svg.appendChild(t);
+    }
+  }
 
   const base=document.createElementNS(ns,'line');
   base.setAttribute('x1',padL); base.setAttribute('x2',W-padR);
@@ -684,11 +509,11 @@ function buildSeries(container, points, opts){
     points.forEach(function(p,i){
       const bh=Math.max((p.value/max)*innerH, p.value>0?2:0);
       const r=document.createElementNS(ns,'rect');
-      r.setAttribute('x',(padL+i*colW+1).toFixed(1));
+      r.setAttribute('x',(padL+i*colW+Math.min(1,colW*0.15)).toFixed(1));
       r.setAttribute('y',(H-padB-bh).toFixed(1));
-      r.setAttribute('width',Math.max(colW-2,1).toFixed(1));
+      r.setAttribute('width',Math.max(colW-Math.min(2,colW*0.3),0.6).toFixed(1));
       r.setAttribute('height',bh.toFixed(1));
-      r.setAttribute('rx',2); r.setAttribute('fill',o.color);
+      r.setAttribute('rx',Math.min(2,colW/3)); r.setAttribute('fill',o.color);
       r.setAttribute('opacity',(0.55+0.45*(p.value/max)).toFixed(2));
       svg.appendChild(r);
     });
@@ -706,13 +531,26 @@ function buildSeries(container, points, opts){
     svg.appendChild(l);
   }
 
+  (o.annotate||[]).forEach(function(an){
+    const x=padL+an.i*colW+colW/2, y=H-padB-(points[an.i].value/max)*innerH;
+    const c=document.createElementNS(ns,'circle');
+    c.setAttribute('cx',x.toFixed(1)); c.setAttribute('cy',y.toFixed(1)); c.setAttribute('r',4);
+    c.setAttribute('fill','var(--card)'); c.setAttribute('stroke',o.color); c.setAttribute('stroke-width','2');
+    svg.appendChild(c);
+    const t=document.createElementNS(ns,'text');
+    t.setAttribute('x',(x-8).toFixed(1)); t.setAttribute('y',(y-4).toFixed(1));
+    t.setAttribute('text-anchor','end'); t.setAttribute('fill','var(--ink)');
+    t.setAttribute('font-size','11.5'); t.setAttribute('font-weight','600');
+    t.textContent=an.text; svg.appendChild(t);
+  });
+
   if(o.axis){
     points.forEach(function(p,i){
       if(!p.axisLabel) return;
       const t=document.createElementNS(ns,'text');
       t.setAttribute('x',(padL+i*colW+colW/2).toFixed(1));
-      t.setAttribute('y',(H-padB+14).toFixed(1));
-      t.setAttribute('text-anchor','middle');
+      t.setAttribute('y',(H-padB+15).toFixed(1));
+      t.setAttribute('text-anchor', i===0 && o.ticks ? 'start' : 'middle');
       t.setAttribute('fill','var(--ink-faint)');
       t.setAttribute('font-size','10.5');
       t.textContent=p.axisLabel;
@@ -740,7 +578,8 @@ function buildSeries(container, points, opts){
       const v=o.decimals? p.value.toFixed(o.decimals) : fmt(Math.round(p.value));
       tip.innerHTML='<b>'+v+(o.unit||'')+'</b> '+(o.label||'')+(p.sub?'<span class="tt-title">'+p.sub+'</span>':'');
       tip.style.opacity='1';
-      tip.style.left=((padL+i*colW+colW/2)/W*100)+'%';
+      const pct=(padL+i*colW+colW/2)/W*100;
+      tip.style.left=Math.min(Math.max(pct,14),86)+'%';
       tip.style.top='0px';
       if(mark) mark.remove();
       mark=document.createElementNS(ns,'line');
@@ -749,7 +588,7 @@ function buildSeries(container, points, opts){
       mark.setAttribute('y1',padT); mark.setAttribute('y2',H-padB);
       mark.setAttribute('stroke',o.color); mark.setAttribute('stroke-width','1');
       mark.setAttribute('stroke-dasharray','2,3'); mark.setAttribute('opacity','0.55');
-      svg.insertBefore(mark,svg.firstChild.nextSibling);
+      svg.insertBefore(mark,svg.firstChild);
     });
     hit.addEventListener('mouseleave',function(){ tip.style.opacity='0'; if(mark){mark.remove();mark=null;} });
   });
@@ -780,69 +619,149 @@ function sparkline(el, values, color){
   el.appendChild(svg);
 }
 
-/* ============ derived series ============ */
-const MONTHS={Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
-function parseDate(s){ const parts=s.split(' '); return new Date(2026, MONTHS[parts[0]], +parts[1]); }
-
-// rolling 5-post average of views
-const WIN=5;
-const rollingSeries = DATA.map(function(d,i){
-  const slice=DATA.slice(Math.max(0,i-WIN+1), i+1);
-  return {sub:d.date+' &middot; trailing '+slice.length+' posts',
-          value: slice.reduce(function(a,r){return a+r.views;},0)/slice.length};
+/* ============ growth cards ============ */
+const GROWTH = [
+  {lab:'Total views', from:THEN.views,  to:ALL.views,  key:'views'},
+  {lab:'Total likes', from:THEN.likes,  to:ALL.likes,  key:'likes'},
+  {lab:'Shares',      from:THEN.shares, to:ALL.shares, key:'shares'},
+  {lab:'Followers',   from:FOLLOWERS.was, to:FOLLOWERS.now}
+];
+document.getElementById('growthGrid').innerHTML = GROWTH.map(function(g, i){
+  const mult = (g.to / g.from).toFixed(1);
+  return '<div class="growth-card">'+
+    '<div class="growth-lab">'+g.lab+'</div>'+
+    '<div class="growth-now">'+fmt(g.to)+'</div>'+
+    '<div class="growth-spark" id="spark'+i+'"></div>'+
+    '<div class="growth-foot"><span class="growth-mult">'+mult+'&times;</span><span class="growth-from">was '+fmt(g.from)+'</span></div>'+
+  '</div>';
+}).join('');
+GROWTH.forEach(function(g,i){
+  const el=document.getElementById('spark'+i);
+  if(g.key){ let run=0; sparkline(el, DAILY.map(function(d){ run+=d[g.key]; return run; }), PALETTE.rust); }
+  else { sparkline(el, [20,62,106,111,745], PALETTE.rust); }
 });
 
-// engagement rate per post
-const engSeries = DATA.map(function(d){
-  return {sub:d.date+' &middot; '+d.title.slice(0,50),
-          value: d.views ? (d.likes + d.comments)/d.views*100 : 0};
-});
+/* ============ daily charts ============ */
+function dailyPoints(key){
+  return DAILY.map(function(d){
+    const day=+d.date.split(' ')[1];
+    const dt=parseDate(d.date);
+    return {value:d[key], sub:DAYS[dt.getDay()]+' '+d.date, axisLabel:(day===1||day===15)?d.date:''};
+  });
+}
+const peakIdx = DAILY.reduce(function(b,d,i,arr){ return d.views>arr[b].views?i:b; },0);
+buildSeries(document.getElementById('chartDaily'), dailyPoints('views'),
+  {mode:'area', color:PALETTE.rust, label:'views', H:230, axis:true, ticks:true,
+   annotate:[{i:peakIdx, text:'Bigg Boss post'}], aria:'Daily TikTok video views, July 8 to September 28'});
+buildSeries(document.getElementById('chartShares'), dailyPoints('shares'),
+  {mode:'bar', color:PALETTE.green, label:'shares', H:190, axis:true, ticks:true, aria:'Daily shares'});
+buildSeries(document.getElementById('chartLikes'), dailyPoints('likes'),
+  {mode:'bar', color:PALETTE.gold, label:'likes', H:190, axis:true, ticks:true, aria:'Daily likes'});
 
-// reach distribution
+/* ============ month table ============ */
+const monthRows = [];
+DAILY.forEach(function(d){
+  const m=d.date.split(' ')[0];
+  let row=monthRows.find(function(r){return r.m===m;});
+  if(!row){ row={m:m, days:0, views:0, likes:0, shares:0, profileViews:0, first:d.date, last:d.date}; monthRows.push(row); }
+  row.days++; row.views+=d.views; row.likes+=d.likes; row.shares+=d.shares; row.profileViews+=d.profileViews; row.last=d.date;
+});
+const maxAvg = Math.max.apply(null, monthRows.map(function(r){return r.views/r.days;}));
+document.getElementById('monthTable').innerHTML = monthRows.map(function(r){
+  const avg=Math.round(r.views/r.days);
+  return '<tr><td><b>'+MONTH_NAMES[MONTHS[r.m]]+'</b><br><span style="color:var(--ink-faint); font-size:11px;">'+r.first+' to '+r.last+' &middot; '+r.days+' days</span></td>'+
+    '<td class="num">'+fmt(r.views)+'</td>'+
+    '<td class="num">'+fmt(avg)+'<div class="month-bar" style="width:'+(avg/maxAvg*100).toFixed(1)+'%; margin-left:auto;"></div></td>'+
+    '<td class="num">'+fmt(r.likes)+'</td><td class="num">'+fmt(r.shares)+'</td><td class="num">'+fmt(r.profileViews)+'</td></tr>';
+}).join('');
+
+/* ============ weekly (7-day blocks ending on the last export day) ============ */
+const weekStats=[];
+DAILY.forEach(function(d, i){
+  const k=(DAILY.length-1-i)%7;
+  if(!weekStats.length || k===6) weekStats.push({from:d.date, to:d.date, days:0, total:0});
+  const w=weekStats[weekStats.length-1];
+  w.days++; w.total+=d.views; w.to=d.date;
+});
+document.getElementById('weeklyTable').innerHTML = weekStats.map(function(w, i){
+  const prior = i > 0 ? weekStats[i-1] : null;
+  const avg = w.total/w.days;
+  const wow = prior ? ((avg - prior.total/prior.days) / (prior.total/prior.days) * 100) : null;
+  const wowCell = wow === null
+    ? '<span class="mono" style="color:var(--ink-faint);">n/a</span>'
+    : '<span class="mono" style="color:'+(wow>=0?'var(--sage)':'var(--rust)')+'; font-weight:700;">'+(wow>=0?'+':'&minus;')+Math.abs(wow).toFixed(0)+'% avg/day</span>';
+  const partial = w.days < 7 ? ' <span style="color:var(--ink-faint);">(partial)</span>' : '';
+  return '<tr><td>'+w.from+' to '+w.to+partial+'</td><td class="num">'+w.days+'</td><td class="num">'+fmt(w.total)+'</td><td class="num">'+fmt(Math.round(avg))+'</td><td>'+wowCell+'</td></tr>';
+}).reverse().join('');
+buildSeries(document.getElementById('chartWeekly'), weekStats.map(function(w,i){
+  return {axisLabel:(i%2===0)?w.from:'', sub:w.from+' to '+w.to+' &middot; '+w.days+' days', value:w.total};
+}), {mode:'bar', color:PALETTE.rust, label:'views', H:190, axis:true, ticks:true, aria:'Weekly view totals'});
+
+/* ============ per-post charts ============ */
+const byViews = DATA.map(function(r,i){ return Object.assign({idx:i}, r); }).sort(function(a,b){ return b.views-a.views; });
+const top3 = byViews.slice(0,3);
+document.getElementById('top3Grid').innerHTML = top3.map(function(r,i){
+  return '<div class="top3-card" data-rank="'+(i+1)+'"><div class="top3-inner">'+
+    '<div class="top3-date">Rank '+(i+1)+' &middot; '+r.date+'</div>'+
+    '<div class="top3-title">'+r.title+'</div>'+
+    '<div class="top3-views">'+fmt(r.views)+'<span>views</span></div>'+
+    '<div class="top3-meta"><span>'+fmt(r.likes)+' likes</span><span>'+fmt(r.comments)+' comments</span></div>'+
+  '</div></div>';
+}).join('');
+
+buildSeries(document.getElementById('chartViews'), DATA.map(function(d){
+  return {value:d.views, sub:d.date+' &middot; '+d.title.slice(0,60)};
+}), {mode:'bar', color:PALETTE.rust, label:'views', H:200, ticks:true, aria:'Views for each post in posting order'});
+
+buildSeries(document.getElementById('chartEngRate'), DATA.map(function(d){
+  return {value: d.views ? (d.likes + d.comments)/d.views*100 : 0, sub:d.date+' &middot; '+d.title.slice(0,50)};
+}), {mode:'bar', color:PALETTE.green, label:'engagement', unit:'%', decimals:2, H:180, ticks:true, aria:'Engagement rate per post'});
+
 const BUCKETS=[
   {lab:'<500',    test:function(v){return v<500;}},
   {lab:'500-1K',  test:function(v){return v>=500&&v<1000;}},
   {lab:'1-2.5K',  test:function(v){return v>=1000&&v<2500;}},
-  {lab:'2.5-5K',  test:function(v){return v>=2500&&v<5000;}},
-  {lab:'5-25K',   test:function(v){return v>=5000&&v<25000;}},
-  {lab:'25K+',    test:function(v){return v>=25000;}}
+  {lab:'2.5-10K', test:function(v){return v>=2500&&v<10000;}},
+  {lab:'10-50K',  test:function(v){return v>=10000&&v<50000;}},
+  {lab:'50K+',    test:function(v){return v>=50000;}}
 ];
-const distSeries = BUCKETS.map(function(b){
+buildSeries(document.getElementById('chartDist'), BUCKETS.map(function(b){
   const c = DATA.filter(function(d){return b.test(d.views);}).length;
   return {axisLabel:b.lab, sub:b.lab+' views &middot; '+c+' of '+DATA.length+' posts', value:c};
-});
+}), {mode:'bar', color:PALETTE.rust, label:'posts', H:180, axis:true});
 
-// average views by weekday
-const DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-const dowSeries = DAYS.map(function(nm,idx){
-  const rows=DATA.filter(function(d){return parseDate(d.date).getDay()===idx;});
+buildSeries(document.getElementById('chartDow'), DAYS.map(function(nm,idx){
+  const rows=DATA.filter(function(d){return !d.approx && parseDate(d.date).getDay()===idx;});
   const sorted=rows.map(function(r){return r.views;}).sort(function(a,b){return a-b;});
-  const med=sorted.length? sorted[Math.floor(sorted.length/2)] : 0;
+  const med=!sorted.length?0: sorted.length%2? sorted[(sorted.length-1)/2] : (sorted[sorted.length/2-1]+sorted[sorted.length/2])/2;
   return {axisLabel:nm, sub:nm+' &middot; median of '+rows.length+(rows.length===1?' post':' posts'), value:med};
+}), {mode:'bar', color:PALETTE.gold, label:'median views', H:180, axis:true});
+
+/* ============ posts table ============ */
+const fresh = DATA.filter(function(d){return d.asOf==='Sep 30';}).length;
+document.getElementById('postsNote').textContent = DATA.length+' posts from July 9 to September 27. Top three by views are flagged; posts since the last check-in are marked new.';
+function renderPosts(sort){
+  const rows = DATA.map(function(r,i){ return Object.assign({idx:i}, r); });
+  if(sort==='top') rows.sort(function(a,b){ return b.views-a.views; }); else rows.reverse();
+  document.querySelector('#postsTable tbody').innerHTML = rows.map(function(r){
+    const rank = top3.findIndex(function(t){return t.idx===r.idx;});
+    const stale = r.asOf!=='Sep 30' ? ' stale' : '';
+    const staleTitle = stale ? ' title="Last captured '+r.asOf+'"' : '';
+    return '<tr class="'+(rank!==-1?'hit':'')+'">'+
+      '<td class="date">'+r.date+'</td>'+
+      '<td class="title">'+r.title+(rank!==-1?'<span class="rank-badge">#'+(rank+1)+' by views</span>':'')+(r.isNew?'<span class="tag-new">New</span>':'')+'</td>'+
+      '<td class="num views'+stale+'"'+staleTitle+'>'+fmt(r.views)+'</td>'+
+      '<td class="num'+stale+'"'+staleTitle+'>'+fmt(r.likes)+'</td>'+
+      '<td class="num'+stale+'"'+staleTitle+'>'+fmt(r.comments)+'</td></tr>';
+  }).join('');
+}
+renderPosts('recent');
+document.querySelectorAll('[data-sort]').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('[data-sort]').forEach(function(b){ b.classList.toggle('active', b===btn); });
+    renderPosts(btn.dataset.sort);
+  });
 });
-
-// weekly blocks as a chart
-const weekSeries = weekStats.map(function(w,i){
-  return {axisLabel:String(i+1),
-          sub:'Block '+(i+1)+' &middot; '+w.count+' posts &middot; avg '+fmt(Math.round(w.avg)),
-          value:w.total};
-});
-
-/* ============ render ============ */
-buildSeries(document.getElementById('chartRolling'), rollingSeries, {mode:'area', color:PALETTE.rust, label:'avg views', H:180});
-buildSeries(document.getElementById('chartEngRate'), engSeries, {mode:'bar', color:PALETTE.green, label:'engagement', unit:'%', decimals:2, H:180});
-buildSeries(document.getElementById('chartDist'), distSeries, {mode:'bar', color:PALETTE.rust, label:'posts', H:180, axis:true});
-buildSeries(document.getElementById('chartDow'), dowSeries, {mode:'bar', color:PALETTE.gold, label:'median views', H:180, axis:true});
-buildSeries(document.getElementById('chartWeekly'), weekSeries, {mode:'bar', color:PALETTE.rust, label:'views', H:180, axis:true});
-
-// sparklines inside the growth cards: cumulative curve for the three we track per post
-GROWTH.forEach(function(g,i){
-  const el=document.getElementById('spark'+i);
-  if(!el) return;
-  const key=['views','likes','comments'][i];
-  if(key){ let run=0; sparkline(el, DATA.map(function(d){ run+=d[key]; return run; }), PALETTE.rust); }
-});
-
 </script>
 </body>
 </html>
